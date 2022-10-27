@@ -1,5 +1,10 @@
-import React from "react";
+import { Stack } from "@mui/material";
+import NavBar from "../components/Navbar";
 
 export default function Home() {
-    return <h1>Hello!</h1>;
-  }
+  return (
+    <Stack>
+      <NavBar />
+    </Stack>
+  );
+}
