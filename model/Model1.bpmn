@@ -18,7 +18,9 @@
       <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
     </bpmn2:endEvent>
     <bpmn2:dataObject id="DataObject_2" name="Data Object 1"/>
+    <bpmn2:dataObject id="DataObject_4" name="Data Object 3"/>
     <bpmn2:association id="Association_1" sourceRef="DataObject_2" targetRef="EndEvent_1"/>
+    <bpmn2:association id="Association_2" sourceRef="DataObject_2" targetRef="DataObject_4"/>
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Process Diagram">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Model1">
@@ -40,6 +42,12 @@
           <dc:Bounds height="15.0" width="74.0" x="338.0" y="301.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataObject_2" bpmnElement="DataObject_4">
+        <dc:Bounds height="50.0" width="36.0" x="610.0" y="370.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_7" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="15.0" width="74.0" x="591.0" y="420.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_1" sourceElement="BPMNShape_1" targetElement="BPMNShape_2">
         <di:waypoint xsi:type="dc:Point" x="136.0" y="118.0"/>
         <di:waypoint xsi:type="dc:Point" x="500.0" y="118.0"/>
@@ -58,6 +66,12 @@
         <di:waypoint xsi:type="dc:Point" x="518.0" y="260.0"/>
         <di:waypoint xsi:type="dc:Point" x="518.0" y="136.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_6"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_Association_2" bpmnElement="Association_2" sourceElement="BPMNShape_DataObject_1" targetElement="BPMNShape_DataObject_2">
+        <di:waypoint xsi:type="dc:Point" x="451.0" y="274.0"/>
+        <di:waypoint xsi:type="dc:Point" x="628.0" y="274.0"/>
+        <di:waypoint xsi:type="dc:Point" x="628.0" y="370.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_8"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
     <bpmndi:BPMNLabelStyle id="BPMNLabelStyle_1">
