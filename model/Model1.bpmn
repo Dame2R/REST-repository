@@ -2,6 +2,11 @@
 <!-- origin at X=0.0 Y=0.0 -->
 <bpmn2:definitions xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:ext="http://org.eclipse.bpmn2/ext" id="Definitions_1" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.5.4.RC1-v20220528-0836-B1" targetNamespace="http://org.eclipse.bpmn2/default/process">
   <bpmn2:process id="Model1" name="Default Process" isExecutable="false">
+    <bpmn2:ioSpecification id="InputOutputSpecification_1">
+      <bpmn2:dataOutput id="DataOutput_2" name="Data Output 2"/>
+      <bpmn2:inputSet id="InputSet_1" name="Input Set 1"/>
+      <bpmn2:outputSet id="OutputSet_2" name="Output Set 2"/>
+    </bpmn2:ioSpecification>
     <bpmn2:startEvent id="StartEvent_1" name="Start Event 1">
       <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
       <bpmn2:dataOutput id="DataOutput_1" name="output1"/>
@@ -18,9 +23,10 @@
       <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
     </bpmn2:endEvent>
     <bpmn2:dataObject id="DataObject_2" name="Data Object 1"/>
-    <bpmn2:dataObject id="DataObject_4" name="Data Object 3"/>
+    <bpmn2:dataObject id="DataObject_6" name="Data Object 5"/>
     <bpmn2:association id="Association_1" sourceRef="DataObject_2" targetRef="EndEvent_1"/>
-    <bpmn2:association id="Association_2" sourceRef="DataObject_2" targetRef="DataObject_4"/>
+    <bpmn2:association id="Association_3" sourceRef="DataObject_2" targetRef="DataObject_6"/>
+    <bpmn2:association id="Association_4" sourceRef="DataObject_6" targetRef="DataOutput_2"/>
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Process Diagram">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Model1">
@@ -42,10 +48,16 @@
           <dc:Bounds height="15.0" width="74.0" x="338.0" y="301.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_DataObject_2" bpmnElement="DataObject_4">
-        <dc:Bounds height="50.0" width="36.0" x="610.0" y="370.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_7" labelStyle="BPMNLabelStyle_1">
-          <dc:Bounds height="15.0" width="74.0" x="591.0" y="420.0"/>
+      <bpmndi:BPMNShape id="BPMNShape_DataObject_3" bpmnElement="DataObject_6">
+        <dc:Bounds height="111.0" width="276.0" x="530.0" y="310.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_9" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="15.0" width="74.0" x="631.0" y="421.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_DataOutput_1" bpmnElement="DataOutput_2">
+        <dc:Bounds height="21.0" width="81.0" x="820.0" y="220.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_11">
+          <dc:Bounds height="15.0" width="75.0" x="823.0" y="241.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_1" sourceElement="BPMNShape_1" targetElement="BPMNShape_2">
@@ -67,11 +79,17 @@
         <di:waypoint xsi:type="dc:Point" x="518.0" y="136.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_6"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="BPMNEdge_Association_2" bpmnElement="Association_2" sourceElement="BPMNShape_DataObject_1" targetElement="BPMNShape_DataObject_2">
-        <di:waypoint xsi:type="dc:Point" x="451.0" y="274.0"/>
-        <di:waypoint xsi:type="dc:Point" x="628.0" y="274.0"/>
-        <di:waypoint xsi:type="dc:Point" x="628.0" y="370.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_8"/>
+      <bpmndi:BPMNEdge id="BPMNEdge_Association_3" bpmnElement="Association_3" sourceElement="BPMNShape_DataObject_1" targetElement="BPMNShape_DataObject_3">
+        <di:waypoint xsi:type="dc:Point" x="375.0" y="301.0"/>
+        <di:waypoint xsi:type="dc:Point" x="375.0" y="365.0"/>
+        <di:waypoint xsi:type="dc:Point" x="530.0" y="365.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_10"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_Association_4" bpmnElement="Association_4" sourceElement="BPMNShape_DataObject_3" targetElement="BPMNShape_DataOutput_1">
+        <di:waypoint xsi:type="dc:Point" x="806.0" y="365.0"/>
+        <di:waypoint xsi:type="dc:Point" x="860.0" y="365.0"/>
+        <di:waypoint xsi:type="dc:Point" x="860.0" y="241.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_12"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
     <bpmndi:BPMNLabelStyle id="BPMNLabelStyle_1">
