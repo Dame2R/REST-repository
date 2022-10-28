@@ -11,7 +11,6 @@
     </bpmn2:startEvent>
     <bpmn2:userTask id="UserTask_1" name="Test 1">
       <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
-      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
     </bpmn2:userTask>
     <bpmn2:sequenceFlow id="SequenceFlow_2" sourceRef="StartEvent_1" targetRef="UserTask_1"/>
@@ -19,10 +18,6 @@
       <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
     </bpmn2:endEvent>
     <bpmn2:sequenceFlow id="SequenceFlow_3" sourceRef="UserTask_1" targetRef="EndEvent_2"/>
-    <bpmn2:exclusiveGateway id="ExclusiveGateway_1" name="Exclusive Gateway 1">
-      <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
-    </bpmn2:exclusiveGateway>
-    <bpmn2:sequenceFlow id="SequenceFlow_1" sourceRef="ExclusiveGateway_1" targetRef="UserTask_1"/>
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Process Diagram">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="process_1">
@@ -44,12 +39,6 @@
           <dc:Bounds height="15.0" width="65.0" x="364.0" y="273.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_1" bpmnElement="ExclusiveGateway_1" isMarkerVisible="true">
-        <dc:Bounds height="50.0" width="50.0" x="435.0" y="115.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_2" labelStyle="BPMNLabelStyle_1">
-          <dc:Bounds height="30.0" width="57.0" x="432.0" y="165.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="BPMNShape_1" targetElement="BPMNShape_UserTask_1">
         <di:waypoint xsi:type="dc:Point" x="58.0" y="185.0"/>
         <di:waypoint xsi:type="dc:Point" x="58.0" y="255.0"/>
@@ -61,12 +50,6 @@
         <di:waypoint xsi:type="dc:Point" x="344.0" y="255.0"/>
         <di:waypoint xsi:type="dc:Point" x="378.0" y="255.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_7"/>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_1" sourceElement="BPMNShape_ExclusiveGateway_1" targetElement="BPMNShape_UserTask_1">
-        <di:waypoint xsi:type="dc:Point" x="435.0" y="140.0"/>
-        <di:waypoint xsi:type="dc:Point" x="255.0" y="140.0"/>
-        <di:waypoint xsi:type="dc:Point" x="255.0" y="230.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_3"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
     <bpmndi:BPMNLabelStyle id="BPMNLabelStyle_1">
