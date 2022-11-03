@@ -1,0 +1,99 @@
+[
+    {
+     "id": "0001",
+     "name": "Prozess 1",
+     "processType": "management",
+     "energySumYear": 207,
+     "successor": "0020"
+    },
+    {
+     "id": "0020",
+     "name": "Prozess 2",
+     "processType": "core",
+     "energySumYear": 40,
+     "predecessor": "0001",
+     "successor": "0030"
+    },
+    {
+     "id": "0021",
+     "name": "Prozess 2.1",
+     "processType": "support",
+     "energySumYear": 132,
+     "parentProcess": "0020"
+    },
+    {
+     "id": "0022",
+     "name": "Prozess 2.2",
+     "processType": "support",
+     "energySumYear": 64,
+     "parentProcess": "0020",
+     "predecessor": "0021"
+    },
+    {
+     "id": "0030",
+     "name": "Prozess 3",
+     "processType": "core",
+     "energySumYear": 80,
+     "predecessor": "0020",
+     "successor": "0004"
+    },
+    {
+     "id": "0031",
+     "name": "Prozess 3.1",
+     "processType": "support",
+     "energySumYear": 173,
+     "parentProcess": "0030",
+     "successor": "0032"
+    },
+    {
+     "id": "0032",
+     "name": "Prozess 3.2",
+     "processType": "support",
+     "energySumYear": 19,
+     "parentProcess": "0031",
+     "predecessor": "0031",
+     "successor": "0033"
+    },
+    {
+     "id": "0033",
+     "name": "Prozess 3.3",
+     "processType": "support",
+     "energySumYear": 173,
+     "parentProcess": "0032",
+     "predecessor": "0032"
+    },
+    {
+     "id": "0004",
+     "name": "Prozess 4",
+     "processType": "management",
+     "energySumYear": 278,
+     "predecessor": "0030"
+    },
+    {
+     "id": "0050",
+     "name": "Prozess 5",
+     "processType": "core",
+     "energySumYear": 173
+    },
+    {
+     "id": "0051",
+     "name": "Prozess 5.1",
+     "processType": "support",
+     "energySumYear": 54,
+     "parentProcess": "0050"
+    },
+    {
+     "id": "0006",
+     "name": "Prozess 6",
+     "processType": "core",
+     "energySumYear": 57,
+     "successor": "0007"
+    },
+    {
+     "id": "0007",
+     "name": "Prozess 7",
+     "processType": "management",
+     "energySumYear": 27,
+     "predecessor": "0006"
+    }
+   ]

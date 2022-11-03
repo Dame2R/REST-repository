@@ -1,0 +1,64 @@
+import { Card, Typography, CardContent, Box, Stack } from '@mui/material';
+
+type ProcessCardProps = {
+    process: any;
+}
+
+function colorBox(energy: number): string {
+    if (energy <= 30) {
+        return 'green'
+    }
+    else if (energy > 30 && energy <= 170) {
+        return 'goldenrod'
+    }
+    else if (energy > 170) {
+        return 'red'
+    };
+    return 'gray'
+};
+
+export const ProcessCard = (props: ProcessCardProps) => {
+
+    var energySumYear = props.process.energySumYear;
+    var newBackground: string = colorBox(energySumYear);
+
+    return (
+        <Card
+            sx={{
+                maxWidth: 300,
+                margin: "auto",
+                padding: 0,
+                boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
+                '&:hover': {
+                    boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
+                },
+            }}
+        >
+            <CardContent sx={{
+                padding: 0,
+                "&:last-child": {
+                    paddingBottom: 0
+                }
+            }}>
+                <Stack direction='row' justifyContent='space-between'>
+                    <Typography fontSize={22} fontWeight='bold' padding={6}>
+                        {props.process.name}
+                    </Typography>
+                    <Box
+                        sx={{
+                            width: '25%',
+                    textAlign: 'center',
+                    display: 'flex',
+                    justifyContent: 'center', /* align horizontal */
+                    alignItems: 'center', /* align vertical */
+                    fontWeight: 'bold',
+                        }} bgcolor={colorBox(energySumYear)}
+                    >
+                    <Typography fontSize={22} fontWeight='bold'>{energySumYear}</Typography>
+                </Box>
+            </Stack>
+
+        </CardContent >
+        </Card >
+    );
+}
