@@ -7,14 +7,17 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="wi-inf-projekt-2-greenbpm" />
+        <module name="rest-service-complete" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="rest-service-complete" target="1.8" />
       <module name="wi-inf-projekt-2-greenbpm" target="1.8" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="rest-service-complete" options="-parameters" />
       <module name="wi-inf-projekt-2-greenbpm" options="-parameters" />
     </option>
   </component>
