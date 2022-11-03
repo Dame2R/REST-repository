@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
-@RequestMapping("/Modell")
+@RequestMapping("/overview")
 public class ModellController {
     @Autowired
     Service modellService;
