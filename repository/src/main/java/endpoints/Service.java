@@ -10,20 +10,20 @@ import javax.transaction.Transactional;
 //@Service
 @Transactional
 public class Service {
-    private static ModellRepository modellRepository;
-    public List<Modell> listAllModells() {
-        return modellRepository.findAll();
+    private static OverviewRepository overviewRepository;
+    public List<Overview> listAllOverviews() {
+        return overviewRepository.findAll();
     }
 
-    public static void saveModell(Modell modell) {
-        modellRepository.save(modell);
+    public static void saveOverview(Overview overview) {
+        overviewRepository.save(overview);
     }
 
-    public static Modell getModell(Integer id) {
-        return modellRepository.findById(id).get();
+    public static Overview getOverview(Integer id) {
+        return overviewRepository.findById(id).get();
     }
 
-    public static void deleteModell(Integer id) {
-        modellRepository.deleteById(id);
+    public static void deleteOverview(Integer id) {
+        overviewRepository.deleteById(id);
     }
 }
