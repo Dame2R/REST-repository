@@ -1,4 +1,4 @@
-package com.afde62.app.rest;
+package endpoints;
 
 import java.sql.Date;
 
