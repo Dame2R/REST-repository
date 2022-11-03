@@ -20,6 +20,7 @@ export default function NavBar() {
       >
         <Toolbar>
           <Box
+          marginRight={2}
             component="img"
             sx={{
               height: 80,
@@ -31,7 +32,7 @@ export default function NavBar() {
               navigate("/");
             }}
           />
-          <Box width={20} />
+         
 
           <Typography
             variant="h6"
