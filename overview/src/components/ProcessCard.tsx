@@ -27,8 +27,8 @@ export const ProcessCard = (props: ProcessCardProps) => {
             sx={{
                 maxWidth: 300,
                 margin: "auto",
+                cursor: "pointer",
                 padding: 0,
-                boxShadow: "0 8px 40px -12px rgba(0,0,0,0.3)",
                 '&:hover': {
                     boxShadow: "0 16px 70px -12.125px rgba(0,0,0,0.3)"
                 },
@@ -41,7 +41,7 @@ export const ProcessCard = (props: ProcessCardProps) => {
                 }
             }}>
                 <Stack direction='row' justifyContent='space-between'>
-                    <Typography fontSize={22} fontWeight='bold' padding={6}>
+                    <Typography variant='h6' fontWeight='bold' padding={3}>
                         {props.process.name}
                     </Typography>
                     <Box
@@ -54,7 +54,7 @@ export const ProcessCard = (props: ProcessCardProps) => {
                     fontWeight: 'bold',
                         }} bgcolor={colorBox(energySumYear)}
                     >
-                    <Typography fontSize={22} fontWeight='bold'>{energySumYear}</Typography>
+                    <Typography variant='h6' fontWeight='bold'>{energySumYear}</Typography>
                 </Box>
             </Stack>
 
