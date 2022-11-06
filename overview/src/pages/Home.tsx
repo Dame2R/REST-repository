@@ -1,38 +1,44 @@
-import { Box, Button, Stack, Grid } from "@mui/material";
+import { Stack, Grid, Box } from "@mui/material";
 import NavBar from "../components/Navbar";
-import { useDataStore } from "../stores/data_store";
 import { ProcessCard } from "../components/ProcessCard";
+import ProcessTypeRow from "../components/ProcessTypeRow";
 import SubHeader from "../components/Subheader";
-import mock_data from "../mock/mock_data.json";
+import { useProcessStore } from "../stores/process_store";
 
 export default function Home() {
-  
-  const randomCreditCardData: any = useDataStore((state) => state.randomCreditCardData);
-  const getRandomCreditCard = useDataStore((state) => state.getRandomCreditCard);
+  const topLevelProcesses: any = useProcessStore(
+    (state) => state.topLevelProcesses
+  );
+  const getTopLevelProcesses = useProcessStore(
+    (state) => state.getTopLevelProcesses
+  );
+  const coreProcesses = useProcessStore(
+    (state) => state.coreProcesses
+  );
+  const managementProcess = useProcessStore(
+    (state) => state.managementProcess
+  );
+  const supportProcess = useProcessStore(
+    (state) => state.supportProcess
+  );
 
-  
-
-const processes = mock_data.map((process) => (
-    <Grid item xs={12} sm={12} md={6} lg={4} xl={3}>
-    <ProcessCard process={process}/>
-    </Grid>
-));
+  if (topLevelProcesses.length == 0) {
+    getTopLevelProcesses();
+  }
 
   return (
     <div>
-    <Stack>
-      <NavBar />
-      <SubHeader />
-    </Stack>
-    <Grid container spacing={3} paddingTop={10}>
-      {processes}
-    </Grid>
-    <Button onClick={() => {
-        getRandomCreditCard();
-      }}>Get Credit Card</Button>
-      <p>{randomCreditCardData.credit_card_expiry_date}</p>
-      <p>{randomCreditCardData.credit_card_number}</p>
-      <p>{randomCreditCardData.credit_card_type}</p>
+      <Stack>
+        <NavBar />
+        <SubHeader />
+        <Box padding={5}>
+          <Stack spacing={5}>
+            <ProcessTypeRow title="Management" processes={managementProcess} />
+            <ProcessTypeRow title="Core" processes={coreProcesses} />
+            <ProcessTypeRow title="Support" processes={supportProcess} />
+          </Stack>
+        </Box>
+      </Stack>
     </div>
   );
 }

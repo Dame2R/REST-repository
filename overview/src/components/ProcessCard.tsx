@@ -26,6 +26,7 @@ export const ProcessCard = (props: ProcessCardProps) => {
         <Card
             sx={{
                 maxWidth: 300,
+                minWidth: 300,
                 margin: "auto",
                 cursor: "pointer",
                 padding: 0,

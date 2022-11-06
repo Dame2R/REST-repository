@@ -8,10 +8,11 @@ import Typography from "@mui/material/Typography";
 
 export default function SubHeader() {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <>
+    <Box sx={{ flexGrow: 1, width: "100%", position: "fixed", top: 80 }}>
       <AppBar
         position="static"
-        style={{ background: "white", color: "black", padding: 0 }}
+        style={{ background: "white", color: "black", padding: 0}}
       >
         <Toolbar>
           <FormControl sx={{ width: 1 / 8 }}>
@@ -84,5 +85,8 @@ export default function SubHeader() {
         </Toolbar>
       </AppBar>
     </Box>
+    <Box height={100}/>
+
+    </>
   );
 }
