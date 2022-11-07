@@ -14,14 +14,14 @@ build:
     - CI=false npm run build
   artifacts:
     paths:
-      - build/
+      - overview/build/
 
 pages:
   image: alpine:latest
   stage: deploy
   script:
     # Rename the CRA `build` folder to `public`
-    - mv build public
+    - mv overview/build public
     - cp public/index.html public/404.html
   artifacts:
     paths:
