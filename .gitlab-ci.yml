@@ -21,8 +21,8 @@ pages:
   stage: deploy
   script:
     # Rename the CRA `build` folder to `public`
-    - mv overview/public public
-    - mv overview/build public
+    - cp overview/public public
+    - cp overview/build public
     - cp public/index.html public/404.html
   artifacts:
     paths:
