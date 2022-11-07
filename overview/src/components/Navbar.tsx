@@ -11,51 +11,46 @@ export default function NavBar() {
   const navigate = useNavigate();
 
   return (
-
     <>
-    <Box sx={{ flexGrow: 1, top: 0, position: "fixed", width: "100%", zIndex: 500 }}>
-      <AppBar
-        position="static"
-        style={{ background: "white", color: "black", padding: 0 }}
+      <Box
+        sx={{
+          flexGrow: 1,
+          top: 0,
+          position: "fixed",
+          width: "100%",
+          zIndex: 500,
+        }}
       >
-        <Toolbar>
-          <Box
-          marginRight={2}
-            component="img"
-            sx={{
-              height: 80,
-              cursor: "pointer",
-            }}
-            alt="Logo"
-            src={logo}
-            onClick={() => {
-              navigate("/");
-            }}
-          />
-         
+        <AppBar
+          position="static"
+          style={{ background: "white", color: "black", padding: 0 }}
+        >
+          <Toolbar>
+            <Box
+              marginRight={2}
+              component="img"
+              sx={{
+                height: 80,
+                cursor: "pointer",
+              }}
+              alt="Logo"
+              src={logo}
+              onClick={() => {
+                navigate("/");
+              }}
+            />
 
-          <Typography
-            variant="h6"
-            component="div"
-            sx={{ flexGrow: 1, fontWeight: "bold" }}
-          >
-            Übersicht
-          </Typography>
-          <Tooltip title="Logout">
-            <IconButton
-              size="large"
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              sx={{ mr: 2 }}
+            <Typography
+              variant="h6"
+              component="div"
+              sx={{ flexGrow: 1, fontWeight: "bold" }}
             >
-              <LogoutIcon />
-            </IconButton>
-          </Tooltip>
-        </Toolbar>
-      </AppBar>
-    </Box>
-    <Box height={80}/>
+              Übersicht
+            </Typography>
+          </Toolbar>
+        </AppBar>
+      </Box>
+      <Box height={80} />
     </>
   );
 }
