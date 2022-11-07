@@ -4,6 +4,7 @@ image: node:latest
 before_script: []
 pages:
   script:
+    - cd overview
     - npm run build
   artifacts:
     paths:
