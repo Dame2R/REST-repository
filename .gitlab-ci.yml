@@ -9,6 +9,7 @@ build:
   image: node:latest
   stage: build
   script:
+    - cd overview
     - npm ci
     - CI=false npm run build
   artifacts:
