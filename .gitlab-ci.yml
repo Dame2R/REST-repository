@@ -6,7 +6,7 @@ pages:
   script:
     - cd overview
     - npm install
-    - npm run build
+    - CI=false npm run build
   artifacts:
     paths:
       # The folder that contains the files to be exposed at the Page URL
