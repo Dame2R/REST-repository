@@ -16,7 +16,9 @@ const router = createBrowserRouter([
     path: "/",
     element: <Home />,
   },
-]);
+], {
+  basename: process.env.PUBLIC_URL
+});
 
 
 root.render(
