@@ -6,13 +6,13 @@ type ProcessCardProps = {
 
 function colorBox(energy: number): string {
     if (energy <= 30) {
-        return 'green'
+        return '#33CC00' /* green */
     }
     else if (energy > 30 && energy <= 170) {
-        return 'goldenrod'
+        return '#FFEF00' /* yellow */
     }
     else if (energy > 170) {
-        return 'red'
+        return '#FF3300' /* red */
     };
     return 'gray'
 };
