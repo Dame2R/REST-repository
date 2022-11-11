@@ -45,7 +45,7 @@ export default function SubHeader() {
               width: 40,
               height: 40,
               borderRadius: 3,
-              backgroundColor: "green",
+              backgroundColor: "#33CC00", /*green*/
               "&:hover": {
                 backgroundColor: "primary.main",
                 opacity: [0.9, 0.8, 0.7],
@@ -60,7 +60,7 @@ export default function SubHeader() {
               width: 40,
               height: 40,
               borderRadius: 3,
-              backgroundColor: "goldenrod     ",
+              backgroundColor: "#FFEF00", /*yellow*/
               "&:hover": {
                 backgroundColor: "primary.main",
                 opacity: [0.9, 0.8, 0.7],
@@ -74,7 +74,7 @@ export default function SubHeader() {
               width: 40,
               height: 40,
               borderRadius: 3,
-              backgroundColor: "red",
+              backgroundColor: "#FF3300",/*red*/ 
               "&:hover": {
                 backgroundColor: "primary.main",
                 opacity: [0.9, 0.8, 0.7],
