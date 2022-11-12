@@ -1,4 +1,5 @@
 import { Card, Typography, CardContent, Box, Stack } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 type ProcessCardProps = {
     process: any;
@@ -19,11 +20,17 @@ function colorBox(energy: number): string {
 
 export const ProcessCard = (props: ProcessCardProps) => {
 
+    let navigate = useNavigate();
+
     var energySumYear = props.process.energySumYear;
     var newBackground: string = colorBox(energySumYear);
 
     return (
         <Card
+        onClick={() => {
+            console.log("first")
+            navigate("/details/" + props.process.id);
+        }}
             sx={{
                 maxWidth: 300,
                 minWidth: 300,

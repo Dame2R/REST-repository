@@ -4,6 +4,7 @@ import { ProcessCard } from "../components/ProcessCard";
 import ProcessTypeRow from "../components/ProcessTypeRow";
 import SubHeader from "../components/Subheader";
 import { useProcessStore } from "../stores/process_store";
+import ProcessLandscape from "../components/ProcessLandscape";
 
 export default function Home() {
   const topLevelProcesses: any = useProcessStore(
@@ -12,15 +13,9 @@ export default function Home() {
   const getTopLevelProcesses = useProcessStore(
     (state) => state.getTopLevelProcesses
   );
-  const coreProcesses = useProcessStore(
-    (state) => state.coreProcesses
-  );
-  const managementProcess = useProcessStore(
-    (state) => state.managementProcess
-  );
-  const supportProcess = useProcessStore(
-    (state) => state.supportProcess
-  );
+  const coreProcesses = useProcessStore((state) => state.coreProcesses);
+  const managementProcess = useProcessStore((state) => state.managementProcess);
+  const supportProcess = useProcessStore((state) => state.supportProcess);
 
   if (topLevelProcesses.length == 0) {
     getTopLevelProcesses();
@@ -30,14 +25,11 @@ export default function Home() {
     <div>
       <Stack>
         <NavBar />
-        <SubHeader />
-        <Box padding={5}>
-          <Stack spacing={5}>
-            <ProcessTypeRow title="Management" processes={managementProcess} />
-            <ProcessTypeRow title="Core" processes={coreProcesses} />
-            <ProcessTypeRow title="Support" processes={supportProcess} />
-          </Stack>
-        </Box>
+        <ProcessLandscape
+          coreProcesses={coreProcesses}
+          managementProcesses={managementProcess}
+          supportProcesses={supportProcess}
+        />
       </Stack>
     </div>
   );
