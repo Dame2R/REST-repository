@@ -4,6 +4,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
+import ProcessDetails from './pages/ProcessDetails';
 
 
 const root = ReactDOM.createRoot(
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home />,
+  },
+  {
+    path: "/details/:id",
+    element: <ProcessDetails />,
   },
 ], {
   basename: process.env.PUBLIC_URL

@@ -7,8 +7,14 @@ import Typography from "@mui/material/Typography";
 import { useNavigate } from "react-router-dom";
 import logo from "../images/logo.svg";
 
-export default function NavBar() {
+type NavBarProps = {
+  title?: string;
+}
+
+export default function NavBar(props: NavBarProps) {
   const navigate = useNavigate();
+
+  const title = props.title == null ? "Übersicht" : props.title;
 
   return (
     <>
@@ -45,7 +51,7 @@ export default function NavBar() {
               component="div"
               sx={{ flexGrow: 1, fontWeight: "bold" }}
             >
-              Übersicht
+              {title}
             </Typography>
           </Toolbar>
         </AppBar>

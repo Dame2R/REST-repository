@@ -46,6 +46,22 @@
      "successor": "0032"
     },
     {
+     "id": "00311",
+     "name": "Prozess 3.11",
+     "processType": "support",
+     "energySumYear": 173,
+     "parentProcess": "0030",
+     "successor": "0031"
+    },
+    {
+     "id": "00312",
+     "name": "Prozess 3.12",
+     "processType": "support",
+     "energySumYear": 173,
+     "parentProcess": "0030",
+     "successor": "0031"
+    },
+    {
      "id": "0032",
      "name": "Prozess 3.2",
      "processType": "support",
