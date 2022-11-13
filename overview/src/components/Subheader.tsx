@@ -5,8 +5,16 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import { useNavigate } from 'react-router-dom';
 
-export default function SubHeader() {
+type ProcessCardProps = {
+  process: any;
+}
+
+export const SubHeader = (props: ProcessCardProps) => {
+  
+  let navigate = useNavigate();
+
   return (
     <>
     <Box sx={{ flexGrow: 1, width: "100%", position: "fixed", top: 80 }}>
@@ -52,7 +60,10 @@ export default function SubHeader() {
                 
               },
             }}
-            onClick={()=>console.log('Box click')}
+            onClick={() => {
+              console.log("Green Box Click")
+              navigate("/energy/:energySumYear" + props.process.energySumYear);
+          }}
           ></Box>
 
           <h5 style={{ color: "black", padding: 20 }}>Niedrig </h5>
@@ -69,7 +80,10 @@ export default function SubHeader() {
                 
               },
             }}
-            onClick={()=>console.log('Box click')}
+            onClick={() => {
+              console.log("Yellow Box Click")
+              navigate("/energy/:energySumYear" + props.process.energySumYear);
+          }}
           ></Box>
           <h5 style={{ color: "black", padding: 20 }}>Mittel </h5>
 
@@ -85,7 +99,10 @@ export default function SubHeader() {
                 
               },
             }}
-            onClick={()=>console.log('Box click')}
+            onClick={() => {
+              console.log("Red Box Click")
+              navigate("/energy/:energySumYear" + props.process.energySumYear);
+          }}
           ></Box>
           <h5 style={{ color: "black", padding: 20 }}>Hoch </h5>
         </Toolbar>

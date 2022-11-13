@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
 import ProcessDetails from './pages/ProcessDetails';
+import ProcessEnergySort from './pages/ProcessEnergySort';
 
 
 const root = ReactDOM.createRoot(
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
     path: "/details/:id",
     element: <ProcessDetails />,
   },
+  {
+  path: "/energy/:energySumYear",
+    element: <ProcessEnergySort/>,
+  }
 ], {
   basename: process.env.PUBLIC_URL
 });
