@@ -47,10 +47,12 @@ export default function SubHeader() {
               borderRadius: 3,
               backgroundColor: "#33CC00", /*green*/
               "&:hover": {
-                backgroundColor: "primary.main",
-                opacity: [0.9, 0.8, 0.7],
+                cursor: "pointer",
+                boxShadow: 8,
+                
               },
             }}
+            onClick={()=>console.log('Box click')}
           ></Box>
 
           <h5 style={{ color: "black", padding: 20 }}>Niedrig </h5>
@@ -62,10 +64,12 @@ export default function SubHeader() {
               borderRadius: 3,
               backgroundColor: "#FFEF00", /*yellow*/
               "&:hover": {
-                backgroundColor: "primary.main",
-                opacity: [0.9, 0.8, 0.7],
+                cursor: "pointer",
+                boxShadow: 8,
+                
               },
             }}
+            onClick={()=>console.log('Box click')}
           ></Box>
           <h5 style={{ color: "black", padding: 20 }}>Mittel </h5>
 
@@ -76,10 +80,12 @@ export default function SubHeader() {
               borderRadius: 3,
               backgroundColor: "#FF3300",/*red*/ 
               "&:hover": {
-                backgroundColor: "primary.main",
-                opacity: [0.9, 0.8, 0.7],
+                cursor: "pointer",
+                boxShadow: 8,
+                
               },
             }}
+            onClick={()=>console.log('Box click')}
           ></Box>
           <h5 style={{ color: "black", padding: 20 }}>Hoch </h5>
         </Toolbar>
