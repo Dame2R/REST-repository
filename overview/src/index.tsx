@@ -23,7 +23,7 @@ const router = createBrowserRouter([
     element: <ProcessDetails />,
   },
   {
-  path: "/energy/:energySumYear",
+  path: "/energy/:energyLevel",
     element: <ProcessEnergySort/>,
   }
 ], {

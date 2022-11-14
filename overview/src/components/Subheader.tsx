@@ -7,11 +7,9 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from 'react-router-dom';
 
-type ProcessCardProps = {
-  process: any;
-}
 
-export const SubHeader = (props: ProcessCardProps) => {
+
+export default function SubHeader() {
   
   let navigate = useNavigate();
 
@@ -62,7 +60,7 @@ export const SubHeader = (props: ProcessCardProps) => {
             }}
             onClick={() => {
               console.log("Green Box Click")
-              navigate("/energy/:energySumYear" + props.process.energySumYear);
+              navigate("/energy/low");
           }}
           ></Box>
 
@@ -82,7 +80,7 @@ export const SubHeader = (props: ProcessCardProps) => {
             }}
             onClick={() => {
               console.log("Yellow Box Click")
-              navigate("/energy/:energySumYear" + props.process.energySumYear);
+              navigate("/energy/medium");
           }}
           ></Box>
           <h5 style={{ color: "black", padding: 20 }}>Mittel </h5>
@@ -101,7 +99,7 @@ export const SubHeader = (props: ProcessCardProps) => {
             }}
             onClick={() => {
               console.log("Red Box Click")
-              navigate("/energy/:energySumYear" + props.process.energySumYear);
+              navigate("/energy/high");
           }}
           ></Box>
           <h5 style={{ color: "black", padding: 20 }}>Hoch </h5>

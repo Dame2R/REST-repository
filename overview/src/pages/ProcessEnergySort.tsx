@@ -5,33 +5,28 @@ import ProcessLandscape from "../components/ProcessLandscape";
 import { useParams } from "react-router-dom";
 
 export default function ProcessEnergySort() {
-  const { energySumYear } = useParams();
+  const { energyLevel } = useParams();
 
   const allProcesses: any = useProcessStore((state) => state.allProcesses);
 
-  const filteredProcesses: any = allProcesses.filter((obj) => {
+  const filteredProcesses: any = allProcesses.filter((obj: any) => {
     return obj.energySumYear <= 30;
   });
-
-  const parentProcessIndex = allProcesses.findIndex(
-    (p: any) => p.id == id
-  );
 
   return (
     <div>
       <Stack>
-        <NavBar
-          title={"Übersicht: " + allProcesses[parentProcessIndex].name}
-        />
+        <NavBar />
         <ProcessLandscape
-          parentProcess={allProcesses[parentProcessIndex]}
-          coreProcesses={allProcesses.filter(
-            (p: any) => p.parentProcess === id && p.processType === "core"
+          coreProcesses={filteredProcesses.filter(
+            (p: any) =>  p.processType === "core"
           )}
-          managementProcesses={allProcesses.filter(
-            (p: any) => p.parentProcess === id && p.processType === "management"
+          managementProcesses={filteredProcesses.filter(
+            (p: any) =>  p.processType === "management"
           )}
-          supportProcesses={allProcesses.filter((p: any) => p.parentProcess === id && p.processType === "support")}
+          supportProcesses={filteredProcesses.filter(
+            (p: any) =>  p.processType === "support"
+          )}
         />
       </Stack>
     </div>
