@@ -23,31 +23,27 @@ public class Overview {
 	@Column(name = "name")
 	private String name;
 
-	@Column(name = "description")
-	private String description;
+	@Column(name = "processType")
+	private String processType;
 
-	@Column(name = "startDate")
-	private Date startDate;
-
-	@Column(name = "endDate")
-	private Date endDate;
+	@Column(name = "energySumYear")
+	private int energySumYear;
 
 	@Column(name = "department")
 	private String department;
 
-	@Column(name = "process_type")
-	private String process_type;
+	//Wie unterscheidet sich das vom predecessor und successor?
+	@Column(name = "parentProcess")
+	private long parentProcess;
 
-	@Column(name = "priority")
-	private String priority;
+	//Es ist noch zu klären, wie bei mehreren Vorgängern/ Nachfolgern vorgegangen wird.
+	@Column(name = "predecessor")
+	private long predecessor;
 
-	@Column(name = "energy_all")
-	private double energy_all;
+	@Column(name = "successor")
+	private long successor;
 
-	@Column(name = "energy_month")
-	private double energy_month;
-
-
-
+	@Column(name = "processDescription")
+	private String processDescription;
 
 }
