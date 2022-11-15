@@ -20,8 +20,8 @@ public class ModellServiceImpl implements ModellService {
 	}
 
 	@Override
-	public Modell saveModell(Modell overview) {
-		return modellRepository.save(overview);
+	public Modell saveModell(Modell modell) {
+		return modellRepository.save(modell);
 	}
 
 	@Override
@@ -31,11 +31,11 @@ public class ModellServiceImpl implements ModellService {
 
 	@Override
 	public Modell getModellById(long id) {
-//		Optional<Overview> overview = overviewRepository.findById(id);
-//		if(overview.isPresent()) {
-//			return overview.get();
+//		Optional<Modell> modell = modellRepository.findById(id);
+//		if(modell.isPresent()) {
+//			return modell.get();
 //		}else {
-//			throw new ResourceNotFoundException("Overview", "Id", id);
+//			throw new ResourceNotFoundException("Modell", "Id", id);
 //		}
 		return modellRepository.findById(id).orElseThrow(() ->
 						new ResourceNotFoundException("Modell", "Id", id));
@@ -45,15 +45,15 @@ public class ModellServiceImpl implements ModellService {
 	@Override
 	public Modell updateModell(Modell modell, long id) {
 
-		// we need to check whether overview with given id is exist in DB or not
-		//Overview existingOverview = overviewRepository.findById(id).orElseThrow(
-		//		() -> new ResourceNotFoundException("Overview", "Id", id));
+		// we need to check whether modell with given id is exist in DB or not
+		//Modell existingModell = modellRepository.findById(id).orElseThrow(
+		//		() -> new ResourceNotFoundException("Modell", "Id", id));
 
-		//existingOverview.setID(overview.getID());
-		//existingOverview.setName(overview.getName());
-		// save existing overview to DB
-		//overviewRepository.save(existingOverview);
-		//return existingOverview;
+		//existingModell.setID(modell.getID());
+		//existingModell.setName(modell.getName());
+		// save existing modell to DB
+		//modellRepository.save(existingModell);
+		//return existingModell;
 	return null;
 	}
 

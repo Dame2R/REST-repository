@@ -5,6 +5,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
+import { Stack } from "@mui/system";
 import { useNavigate } from 'react-router-dom';
 
 
@@ -45,7 +46,28 @@ export default function SubHeader() {
             component="div"
             sx={{ flexGrow: 1, fontWeight: "bold" }}
           ></Typography>
+    
 
+    <Box
+     sx={{
+               
+              "&:hover": {
+                cursor: "pointer",
+                                
+              },
+        }}
+        onClick={() => {
+          console.log("Green Box Click")
+          navigate("/energy/low");
+        }}
+        >
+          <Stack direction={"row"}
+          justifyContent="center"
+          alignItems="center"
+          >
+
+          
+            
           <Box
             sx={{
               width: 40,
@@ -58,14 +80,37 @@ export default function SubHeader() {
                 
               },
             }}
-            onClick={() => {
-              console.log("Green Box Click")
-              navigate("/energy/low");
-          }}
+            
           ></Box>
+        <h5 style={{ color: "black", padding: 20 }}>Niedrig </h5>
+          
+        </Stack>
+        </Box>
 
-          <h5 style={{ color: "black", padding: 20 }}>Niedrig </h5>
 
+
+        <Box
+     sx={{
+               
+              "&:hover": {
+                cursor: "pointer",
+                                
+              },
+            }}
+            onClick={() => {
+              console.log("Yellow Box Click")
+              navigate("/energy/medium");
+          }}
+        >
+          <Stack direction={"row"}
+          justifyContent="center"
+          alignItems="center"
+          >
+
+          
+            
+
+          
           <Box
             sx={{
               width: 40,
@@ -78,12 +123,28 @@ export default function SubHeader() {
                 
               },
             }}
-            onClick={() => {
-              console.log("Yellow Box Click")
-              navigate("/energy/medium");
-          }}
           ></Box>
           <h5 style={{ color: "black", padding: 20 }}>Mittel </h5>
+          </Stack>
+        </Box>
+
+        <Box
+     sx={{
+               
+              "&:hover": {
+                cursor: "pointer",
+                                
+              },
+            }}
+            onClick={() => {
+              console.log("Red Box Click")
+              navigate("/energy/high");
+          }}
+        >
+          <Stack direction={"row"}
+          justifyContent="center"
+          alignItems="center"
+          >
 
           <Box
             sx={{
@@ -97,12 +158,10 @@ export default function SubHeader() {
                 
               },
             }}
-            onClick={() => {
-              console.log("Red Box Click")
-              navigate("/energy/high");
-          }}
           ></Box>
           <h5 style={{ color: "black", padding: 20 }}>Hoch </h5>
+          </Stack>
+        </Box>
         </Toolbar>
       </AppBar>
     </Box>
