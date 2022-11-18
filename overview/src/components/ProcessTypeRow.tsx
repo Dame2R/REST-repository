@@ -6,6 +6,7 @@ import ArrowIcon from "@mui/icons-material/ChevronRight";
 type ProcessTypeRowProps = {
   title: string;
   processes: any[];
+  
 };
 
 export default function ProcessTypeRow(props: ProcessTypeRowProps) {
@@ -28,10 +29,14 @@ export default function ProcessTypeRow(props: ProcessTypeRowProps) {
 
   return (
     <>
-      <Stack direction="row" alignItems="center">
-        <Box>
-          <Typography variant="h6" marginRight={10} minWidth={200}>
+      <Stack direction="row" alignItems="center" >
+        <Box >
+          <Typography variant="h6" fontWeight='bold' marginRight={10} minWidth={200} 
+          >
+            
+            
             {props.title}
+            
           </Typography>
         </Box>
         <Stack direction="row" alignItems="center">
