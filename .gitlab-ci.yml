@@ -1,5 +1,14 @@
 image: node
-
+stages:
+  - build
+  - deploy
+maven-build:
+  image: maven:3-jdk-8
+  stage: build
+  script: "mvn package"
+  artifacts:
+    paths:
+      - target/*.jar
 pages:
   stage: deploy
   variables:
@@ -18,3 +27,4 @@ pages:
   artifacts:
     paths:
       - public
+
