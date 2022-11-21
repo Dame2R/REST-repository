@@ -8,7 +8,7 @@ maven-build:
   stage: build
   cache:
     paths:
-      - repository
+      - repository/
   script: "mvn package"
   artifacts:
     paths:
