@@ -92,20 +92,6 @@
 						<descriptorRef>jar-with-dependencies</descriptorRef>
 					</descriptorRefs>
 				</configuration>
-				 <executions>
-            <execution>
-                <goals>
-                    <goal>repackage</goal>
-                </goals>
-                <configuration>
-                    <executable>true</executable>
-                    <classifier>spring-boot</classifier>
-                    <mainClass>
-                        [groupId.artifactId].Application
-                    </mainClass>
-                </configuration>
-            </execution>
-        </executions>
 			</plugin>
 		</plugins>
 	</build>
