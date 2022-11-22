@@ -12,6 +12,7 @@
 	<artifactId>springboot-backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot-backend</name>
+	<packaging>jar</packaging>
 	<description>Spring Boot RESTful Web Services</description>
 	<properties>
 		<java.version>16</java.version>
@@ -94,5 +95,7 @@
 			</plugin>
 		</plugins>
 	</build>
+
+
 
 </project>
