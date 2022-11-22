@@ -1,17 +1,12 @@
 package repo.controller;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 import repo.model.Overview;
 import repo.service.OverviewService;
@@ -27,15 +22,26 @@ public class OverviewController {
 		this.overviewService = overviewService;
 	}
 
-	@GetMapping("/overviews")
-	public List<Overview> getAllOverviews(){
-		return overviewService.getAllOverviews();
-	}
-
 	@GetMapping("/overview/{id}")
 	public ResponseEntity<Overview> getOverviewById(@PathVariable("id") long overviewId){
 		return new ResponseEntity<Overview>(overviewService.getOverviewById(overviewId), HttpStatus.OK);
 	}
+
+	@GetMapping("/overviews")
+	public List<Overview> getAllOverviewsWithOptionalRequestParam(@RequestParam(required = false) String sort){
+		if(sort == null){
+			return overviewService.getAllOverviews();
+		}
+		else if(sort.equals("CO2")) {
+			var allOverviews = overviewService.getAllOverviews();
+			allOverviews.sort( (o1, o2) -> o2.getEnergySumYear() - o1.getEnergySumYear());
+			return allOverviews;
+		}
+
+		return overviewService.getAllOverviews();
+
+	}
+
 
 
 	/** Ungenutzte Methoden vorerst auskommentiert.
