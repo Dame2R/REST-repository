@@ -5,6 +5,7 @@ import ProcessTypeRow from "../components/ProcessTypeRow";
 import SubHeader from "../components/Subheader";
 import { useProcessStore } from "../stores/process_store";
 import ProcessLandscape from "../components/ProcessLandscape";
+import { MuiSnackbar } from "../components/MuiSnackbar";
 
 export default function Home() {
   const topLevelProcesses: any = useProcessStore(
@@ -29,7 +30,9 @@ export default function Home() {
           coreProcesses={coreProcesses}
           managementProcesses={managementProcess}
           supportProcesses={supportProcess}
+          
         />
+        <MuiSnackbar/>
       </Stack>
     </div>
   );
