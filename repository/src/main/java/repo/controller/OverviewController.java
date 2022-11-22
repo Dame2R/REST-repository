@@ -17,7 +17,7 @@ import repo.model.Overview;
 import repo.service.OverviewService;
 
 @RestController
-@RequestMapping("/overview")
+@RequestMapping()
 public class OverviewController {
 	
 	private OverviewService overviewService;
@@ -27,33 +27,35 @@ public class OverviewController {
 		this.overviewService = overviewService;
 	}
 
-	@PostMapping()
-	public ResponseEntity<Overview> saveOverview(@RequestBody Overview overview){
-		return new ResponseEntity<Overview>(overviewService.saveOverview(overview), HttpStatus.CREATED);
-	}
-
-	@GetMapping
+	@GetMapping("/overviews")
 	public List<Overview> getAllOverviews(){
 		return overviewService.getAllOverviews();
 	}
 
-	@GetMapping("{id}")
+	@GetMapping("/overview/{id}")
 	public ResponseEntity<Overview> getOverviewById(@PathVariable("id") long overviewId){
 		return new ResponseEntity<Overview>(overviewService.getOverviewById(overviewId), HttpStatus.OK);
 	}
 
-	@PutMapping("{id}")
+
+	/** Ungenutzte Methoden vorerst auskommentiert.
+
+	 @PostMapping("/overview")
+	         public ResponseEntity<Overview> saveOverview(@RequestBody Overview overview){
+	  		return new ResponseEntity<Overview>(overviewService.saveOverview(overview), HttpStatus.CREATED);
+	     }
+	@PutMapping("/overview/{id}")
 	public ResponseEntity<Overview> updateOverview(@PathVariable("id") long id
 												  , @RequestBody Overview overview){
 		return new ResponseEntity<Overview>(overviewService.updateOverview(overview, id), HttpStatus.OK);
 	}
 
-	@DeleteMapping("{id}")
+	@DeleteMapping("/overview/{id}")
 	public ResponseEntity<String> deleteOverview(@PathVariable("id") long id){
 
 		overviewService.deleteOverview(id);
 		
 		return new ResponseEntity<String>("Overview deleted successfully!.", HttpStatus.OK);
 	}
-	
+	*/
 }
