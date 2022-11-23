@@ -1,6 +1,5 @@
 package repo.controller;
 
-import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -8,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import repo.exception.ResourceNotFoundException;
 import repo.model.Overview;
 import repo.service.OverviewService;
 
@@ -28,11 +28,11 @@ public class OverviewController {
 	}
 
 	@GetMapping("/overviews")
-	public List<Overview> getAllOverviewsWithOptionalRequestParam(@RequestParam(required = false) String sort){
-		if(sort == null){
+	public List<Overview> getAllOverviewsWithOptionalRequestParam(@RequestParam(required = false) String sortBy){
+		if(sortBy == null){
 			return overviewService.getAllOverviews();
 		}
-		else if(sort.equals("CO2")) {
+		else if(sortBy.equals("CO2")) {
 			var allOverviews = overviewService.getAllOverviews();
 			allOverviews.sort( (o1, o2) -> o2.getEnergySumYear() - o1.getEnergySumYear());
 			return allOverviews;
@@ -41,6 +41,24 @@ public class OverviewController {
 		return overviewService.getAllOverviews();
 
 	}
+
+	@GetMapping("/overviewsTest")
+	public List<Overview> getAllOverviewsWithProcessTypeCore(@RequestParam(required = false) String type) throws ResourceNotFoundException{
+
+		if(type.equalsIgnoreCase("core")) {
+			var allOverviews = overviewService.getAllOverviews();
+
+			for (int i = 0; i < allOverviews.size(); i++) {
+				String over = allOverviews.get(i).getProcessType();
+				if (!over.equals("CORE")) {
+					allOverviews.remove(i);
+				}
+			}
+			return allOverviews;
+		}
+		throw new ResourceNotFoundException("Keine Core Prozesse","Fehler", null );
+
+		}
 
 
 
