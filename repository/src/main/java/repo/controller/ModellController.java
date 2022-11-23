@@ -17,7 +17,7 @@ import repo.model.Modell;
 import repo.service.ModellService;
 
 @RestController
-@RequestMapping("/modell")
+@RequestMapping()
 public class ModellController {
 	
 	private ModellService modellService;
@@ -27,33 +27,31 @@ public class ModellController {
 		this.modellService = modellService;
 	}
 
-	@PostMapping()
-	public ResponseEntity<Modell> saveModell(@RequestBody Modell modell){
-		return new ResponseEntity<Modell>(modellService.saveModell(modell), HttpStatus.CREATED);
-	}
-
-	@GetMapping
+	@GetMapping("/modelle")
 	public List<Modell> getAllModell(){
 		return modellService.getAllModells();
 	}
 
-	@GetMapping("{id}")
+
+	/**
+	 * Diese Methoden werden Stück für Stück an die UserStories angepasst. Bis dahin bleiben Sie auskommentiert.
+	@GetMapping("/modell/{id}")
 	public ResponseEntity<Modell> getModellById(@PathVariable("id") long modellId){
 		return new ResponseEntity<Modell>(modellService.getModellById(modellId), HttpStatus.OK);
 	}
 
-	@PutMapping("{id}")
+	@PutMapping("/modell/{id}")
 	public ResponseEntity<Modell> updateModell(@PathVariable("id") long id
 												  , @RequestBody Modell modell){
 		return new ResponseEntity<Modell>(modellService.updateModell(modell, id), HttpStatus.OK);
 	}
 
-	@DeleteMapping("{id}")
+	@DeleteMapping("/modell/{id}")
 	public ResponseEntity<String> deleteModell(@PathVariable("id") long id){
 
 		modellService.deleteModell(id);
-		
+
 		return new ResponseEntity<String>("Modell deleted successfully!.", HttpStatus.OK);
 	}
-	
+	*/
 }
