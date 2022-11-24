@@ -3,7 +3,9 @@ package repo.controller;
 import java.io.File;
 import java.io.StringReader;
 import java.sql.Blob;
+import java.sql.SQLException;
 import java.sql.SQLOutput;
+import java.util.ArrayList;
 import java.util.List;
 import javax.sql.*;
 
@@ -95,43 +97,26 @@ public class ModellController {
 		return HttpStatus.CREATED.toString();
 	}
 
+	@GetMapping("/modell/{id}")
+	public ResponseEntity<String> getModellById(@PathVariable("id") String modellId) throws SQLException {
 
-	private void readXML(String xml){
-		Modell modell = null;
+		List<Modell> modelle = modellService.getAllModells();
 
-		try{
-			String URL = "http://www.greenbpmn.io";
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			Document doc = builder.parse(URL);
-
-			doc.getDocumentElement().normalize();
-
-//			modell = new Modell();
-//			modell.setXml(xml);
-//			modell.setStartKnoten(String.valueOf(doc.getElementsByTagName("startEvent").item(0)));
-//			modell.setCo2(String.valueOf(doc.getElementsByTagName("co2").item(0)));
-
-			System.out.println("Ausgabe:::::");
-			System.out.println(doc.getElementsByTagName("startEvent"));
-
-
-
-		}catch(Exception e){
+		for(int i=0; i<modelle.size(); i++){
+			if(modelle.get(i).getId().equals(modellId)){
+				Blob blob = modelle.get(i).getXml();
+				String string = new String(blob.getBytes(1, (int) blob.length()));
+				return new ResponseEntity<String>(string, HttpStatus.OK);
+			}
 
 		}
-
-
+		return new ResponseEntity<>("Fehler...", HttpStatus.NOT_FOUND);
 	}
-
 
 
 	/**
 	 * Diese Methoden werden Stück für Stück an die UserStories angepasst. Bis dahin bleiben Sie auskommentiert.
-	@GetMapping("/modell/{id}")
-	public ResponseEntity<Modell> getModellById(@PathVariable("id") long modellId){
-		return new ResponseEntity<Modell>(modellService.getModellById(modellId), HttpStatus.OK);
-	}
+
 
 	@PutMapping("/modell/{id}")
 	public ResponseEntity<Modell> updateModell(@PathVariable("id") long id
