@@ -1,14 +1,10 @@
 package repo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import lombok.Data;
 
+import java.sql.Blob;
 import java.util.Date;
 
 @Data
@@ -18,9 +14,9 @@ public class Modell {
 	
 	@Id
 	private String id;
-	
-	@Column(name = "xml")
-	private String xml;
+
+	@Lob
+	private Blob xml;
 
 	@Column(name = "parentProcess")
 	private String parentProcess;
