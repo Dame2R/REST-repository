@@ -47,10 +47,6 @@ public class ModellController {
 		this.modellService = modellService;
 	}
 
-	@GetMapping("/modelle")
-	public List<Modell> getAllModell(){
-		return modellService.getAllModells();
-	}
 
 
 	@PostMapping(path = "/modell", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
@@ -132,4 +128,13 @@ public class ModellController {
 		return new ResponseEntity<String>("Modell deleted successfully!.", HttpStatus.OK);
 	}
 	*/
+
+	/** Brauchen wir nicht vom UseCase her
+
+	 @GetMapping("/modelle")
+	 public List<Modell> getAllModell(){
+	 return modellService.getAllModells();
+	 }
+	 */
+
 }
