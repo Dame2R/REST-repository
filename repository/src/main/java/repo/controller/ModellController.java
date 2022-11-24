@@ -1,8 +1,15 @@
 package repo.controller;
 
+import java.io.File;
+import java.io.StringReader;
+import java.sql.SQLOutput;
 import java.util.List;
 
+import io.swagger.models.Xml;
+import org.apache.maven.model.Model;
+import org.cyberneko.html.parsers.DOMParser;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,8 +20,15 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import repo.model.Modell;
 import repo.service.ModellService;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 
 @RestController
 @RequestMapping()
@@ -31,6 +45,82 @@ public class ModellController {
 	public List<Modell> getAllModell(){
 		return modellService.getAllModells();
 	}
+
+
+	@PostMapping(path = "/modell", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
+	public ResponseEntity<String> saveModel(@RequestBody String xml){
+
+		System.out.println("hLooa");
+		System.out.println(xml);
+
+		try{
+
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			InputSource is = new InputSource(new StringReader(xml));
+			Document document = builder.parse(is);
+
+			System.out.println("4");
+			document.getDocumentElement().normalize();
+
+			System.out.println("5");
+			NodeList startEvent = document.getElementsByTagName("startEvent");
+			Node item = startEvent.item(0);
+			System.out.println(item.getAttributes().item(0).getNodeValue());
+
+
+
+//			modell = new Modell();
+//			modell.setXml(xml);
+//			modell.setStartKnoten(String.valueOf(doc.getElementsByTagName("startEvent").item(0)));
+//			modell.setCo2(String.valueOf(doc.getElementsByTagName("co2").item(0)));
+
+
+
+
+
+
+		}catch(Exception e){
+			System.out.println(e.getMessage() + "Fehler...");
+		}
+
+		return new ResponseEntity<String>(HttpStatus.OK);
+
+
+
+
+//		return new ResponseEntity<Model>(modellService.saveModell(model), HttpStatus.CREATED);
+	}
+
+
+	private void readXML(String xml){
+		Modell modell = null;
+
+		try{
+			String URL = "http://www.greenbpmn.io";
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			Document doc = builder.parse(URL);
+
+			doc.getDocumentElement().normalize();
+
+//			modell = new Modell();
+//			modell.setXml(xml);
+//			modell.setStartKnoten(String.valueOf(doc.getElementsByTagName("startEvent").item(0)));
+//			modell.setCo2(String.valueOf(doc.getElementsByTagName("co2").item(0)));
+
+			System.out.println("Ausgabe:::::");
+			System.out.println(doc.getElementsByTagName("startEvent"));
+
+
+
+		}catch(Exception e){
+
+		}
+
+
+	}
+
 
 
 	/**

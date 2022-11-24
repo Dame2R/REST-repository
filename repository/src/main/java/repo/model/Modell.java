@@ -17,35 +17,24 @@ import java.util.Date;
 public class Modell {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long id;
+	private String id;
 	
-	@Column(name = "name")
-	private String name;
+	@Column(name = "xml")
+	private String xml;
 
-	@Column(name = "description")
-	private String description;
+	@Column(name = "parentProcess")
+	private String parentProcess;
 
-	@Column(name = "startDate")
-	private Date startDate;
+	@Column(name = "startKnoten")
+	private String startKnoten;
 
-	@Column(name = "endDate")
-	private Date endDate;
+	@Column(name = "endKnoten")
+	private String endKnoten;
 
-	@Column(name = "department")
-	private String department;
+	@Column(name = "co2")
+	private String co2;
 
-	@Column(name = "process_type")
-	private String process_type;
 
-	@Column(name = "priority")
-	private String priority;
-
-	@Column(name = "energy_all")
-	private double energy_all;
-
-	@Column(name = "energy_month")
-	private double energy_month;
 
 
 

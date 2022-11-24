@@ -64,5 +64,9 @@ public class ModellServiceImpl implements ModellService {
 								new ResourceNotFoundException("Modell", "Id", id));
 		modellRepository.deleteById(id);
 	}
+
+
+
+
 	
 }
