@@ -1,5 +1,6 @@
 import create from "zustand";
 import mock_procceess from "../mock/mock_data.json";
+import axios from "axios";
 
 type ProcessStoreState = {
   allProcesses: any[];
@@ -20,36 +21,41 @@ export const useProcessStore = create<ProcessStoreState>((set, get) => ({
   managementProcess: [],
   supportProcess: [],
   getTopLevelProcesses: () => {
-    const filteredProcesses = get().allProcesses.filter(
-      (e) => e.parentProcess === undefined
-    );
-    filteredProcesses.sort((a, b) =>
-      a.energySumYear < b.energySumYear ? 1 : -1
-    );
+    axios.get("/overviews").then((response) => {
+      console.log(response.data);
+      const filteredProcesses = response.data;
+      // const filteredProcesses = response.data.filter(
+      //   (e) => e.parentProcess === undefined
+      // );
+      filteredProcesses.sort((a: any, b: any) =>
+        a.energySumYear < b.energySumYear ? 1 : -1
+      );
 
-    set({ topLevelProcesses: filteredProcesses });
+      set({ topLevelProcesses: filteredProcesses });
 
-    get().getCoreProcesses();
-    get().getManagementProcesses();
-    get().getSupportProcesses();
+      get().getCoreProcesses();
+      get().getManagementProcesses();
+      get().getSupportProcesses();
+    });
   },
+
   getCoreProcesses: () => {
     const filteredProcesses = get().topLevelProcesses.filter(
-      (e) => e.processType === "core"
+      (e) => e.processType === "CORE"
     );
 
     set({ coreProcesses: filteredProcesses });
   },
   getManagementProcesses: () => {
     const filteredProcesses = get().topLevelProcesses.filter(
-      (e) => e.processType === "management"
+      (e) => e.processType === "MANAGEMENT"
     );
 
     set({ managementProcess: filteredProcesses });
   },
   getSupportProcesses: () => {
     const filteredProcesses = get().topLevelProcesses.filter(
-      (e) => e.processType === "support"
+      (e) => e.processType === "SUPPORT"
     );
 
     set({ supportProcess: filteredProcesses });

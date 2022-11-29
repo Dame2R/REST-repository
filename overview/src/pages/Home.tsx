@@ -1,11 +1,8 @@
-import { Stack, Grid, Box } from "@mui/material";
-import NavBar from "../components/Navbar";
-import { ProcessCard } from "../components/ProcessCard";
-import ProcessTypeRow from "../components/ProcessTypeRow";
-import SubHeader from "../components/Subheader";
-import { useProcessStore } from "../stores/process_store";
-import ProcessLandscape from "../components/ProcessLandscape";
+import { Stack } from "@mui/material";
 import { MuiSnackbar } from "../components/MuiSnackbar";
+import NavBar from "../components/Navbar";
+import ProcessLandscape from "../components/ProcessLandscape";
+import { useProcessStore } from "../stores/process_store";
 
 export default function Home() {
   const topLevelProcesses: any = useProcessStore(
@@ -23,17 +20,14 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <Stack>
-        <NavBar />
-        <ProcessLandscape
-          coreProcesses={coreProcesses}
-          managementProcesses={managementProcess}
-          supportProcesses={supportProcess}
-          
-        />
-        <MuiSnackbar/>
-      </Stack>
-    </div>
+    <Stack>
+      <NavBar />
+      <ProcessLandscape
+        coreProcesses={coreProcesses}
+        managementProcesses={managementProcess}
+        supportProcesses={supportProcess}
+      />
+      <MuiSnackbar />
+    </Stack>
   );
 }
