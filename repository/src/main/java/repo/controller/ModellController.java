@@ -26,7 +26,6 @@ import repo.dtos.ModellDto;
 import repo.dtos.OverviewDto;
 import repo.exception.ResourceNotFoundException;
 import repo.model.Modell;
-import repo.model.Overview;
 import repo.service.ModellService;
 
 import javax.sql.rowset.serial.SerialBlob;
