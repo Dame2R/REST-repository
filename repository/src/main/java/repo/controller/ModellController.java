@@ -15,14 +15,7 @@ import org.cyberneko.html.parsers.DOMParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -139,7 +132,40 @@ public class ModellController {
 		return new ResponseEntity<OverviewDto>(overviewDto, HttpStatus.NOT_FOUND);
 	}
 
+	@GetMapping("/overviews")
+	public List<OverviewDto> getAllOverviewsWithOptionalRequestParam(@RequestParam(required = false) String sortBy){
+		if(sortBy == null){
+			return getAllOverviews();
+		}
+		else if(sortBy.equals("CO2")) {
+			var allOverviews = getAllOverviews();
+			allOverviews.sort( (o1, o2) -> o2.getEnergySumYear() - o1.getEnergySumYear());
+			return allOverviews;
+		}
 
+		return getAllOverviews();
+
+	}
+
+	private List<OverviewDto> getAllOverviews(){
+
+		List<Modell> allModells = modellService.getAllModells();
+		List<OverviewDto> overviewDtos = new ArrayList<>();
+
+		for(int i=0; i<allModells.size(); i++){
+			OverviewDto overviewDto = new OverviewDto();
+			overviewDto.setStartKnoten(allModells.get(i).getStartKnoten());
+			overviewDto.setDepartment(allModells.get(i).getDepartment());
+			overviewDto.setProcessType(allModells.get(i).getProcessType());
+			overviewDto.setId(allModells.get(i).getId());
+			overviewDto.setEnergySumYear(allModells.get(i).getEnergySumYear());
+			overviewDto.setProcessDescription(allModells.get(i).getProcessDescription());
+			overviewDto.setParentProcess(allModells.get(i).getParentProcess());
+			overviewDto.setEndKnoten(allModells.get(i).getEndKnoten());
+			overviewDtos.add(overviewDto);
+		}
+		return overviewDtos;
+	}
 
 
 

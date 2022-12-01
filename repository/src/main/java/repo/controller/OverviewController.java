@@ -25,20 +25,7 @@ public class OverviewController {
 
 
 
-	@GetMapping("/overviews")
-	public List<Overview> getAllOverviewsWithOptionalRequestParam(@RequestParam(required = false) String sortBy){
-		if(sortBy == null){
-			return overviewService.getAllOverviews();
-		}
-		else if(sortBy.equals("CO2")) {
-			var allOverviews = overviewService.getAllOverviews();
-			allOverviews.sort( (o1, o2) -> o2.getEnergySumYear() - o1.getEnergySumYear());
-			return allOverviews;
-		}
 
-		return overviewService.getAllOverviews();
-
-	}
 
 	@GetMapping("/overviewsTest")
 	public List<Overview> getAllOverviewsWithProcessTypeCore(@RequestParam(required = false) String type) throws ResourceNotFoundException{
