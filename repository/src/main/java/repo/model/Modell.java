@@ -27,8 +27,17 @@ public class Modell {
 	@Column(name = "endKnoten")
 	private String endKnoten;
 
-	@Column(name = "co2")
-	private String co2;
+	@Column(name = "energySumYear")
+	private int energySumYear;
+
+	@Column(name = "processType")
+	private String processType;
+
+	@Column(name = "department")
+	private String department;
+
+	@Column(name = "processDescription")
+	private String processDescription;
 
 
 
