@@ -24,6 +24,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import repo.dtos.ModellDto;
 import repo.dtos.OverviewDto;
+import repo.exception.ResourceNotFoundException;
 import repo.model.Modell;
 import repo.model.Overview;
 import repo.service.ModellService;
@@ -146,6 +147,27 @@ public class ModellController {
 		return getAllOverviews();
 
 	}
+
+	@GetMapping("/overviews/processType")
+	public List<OverviewDto> getAllOverviewsWithProcessTypeCore(@RequestParam(required = false) String type) throws ResourceNotFoundException {
+
+		if(type.equalsIgnoreCase("core")) {
+			var allOverviews = getAllOverviews();
+
+			List<OverviewDto> overviewDtos = new ArrayList<>();
+
+			for (int i = 0; i < allOverviews.size(); i++) {
+				String processType = allOverviews.get(i).getProcessType();
+				if (processType.equalsIgnoreCase("CORE")) {
+					overviewDtos.add(allOverviews.get(i));
+				}
+			}
+			return overviewDtos;
+		}
+		throw new ResourceNotFoundException("Keine Core Prozesse","Fehler", null );
+
+	}
+
 
 	private List<OverviewDto> getAllOverviews(){
 
