@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
+import repo.dtos.OverviewDto;
 import repo.exception.ResourceNotFoundException;
 import repo.model.Overview;
 import repo.service.OverviewService;
@@ -22,10 +23,7 @@ public class OverviewController {
 		this.overviewService = overviewService;
 	}
 
-	@GetMapping("/overview/{id}")
-	public ResponseEntity<Overview> getOverviewById(@PathVariable("id") long overviewId){
-		return new ResponseEntity<Overview>(overviewService.getOverviewById(overviewId), HttpStatus.OK);
-	}
+
 
 	@GetMapping("/overviews")
 	public List<Overview> getAllOverviewsWithOptionalRequestParam(@RequestParam(required = false) String sortBy){

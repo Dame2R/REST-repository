@@ -29,7 +29,10 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
+import repo.dtos.ModellDto;
+import repo.dtos.OverviewDto;
 import repo.model.Modell;
+import repo.model.Overview;
 import repo.service.ModellService;
 
 import javax.sql.rowset.serial.SerialBlob;
@@ -46,8 +49,6 @@ public class ModellController {
 		super();
 		this.modellService = modellService;
 	}
-
-
 
 	@PostMapping(path = "/modell", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	public String saveModel(@RequestBody String xml){
@@ -83,9 +84,15 @@ public class ModellController {
 
 
 			//CO2 einfügen
-			modell.setCo2("Test");
+			modell.setEnergySumYear(200);
+			modell.setDepartment("tbd");
+			modell.setProcessDescription("tbd");
+			modell.setProcessType("tbd");
+			modell.setParentProcess("tbd");
 
 			modellService.saveModell(modell);
+
+
 
 		}catch(Exception e){
 			HttpStatus.BAD_REQUEST.toString();
@@ -106,8 +113,34 @@ public class ModellController {
 			}
 
 		}
-		return new ResponseEntity<>("Fehler...", HttpStatus.NOT_FOUND);
+		return new ResponseEntity<String>("Fehler!", HttpStatus.NOT_FOUND);
 	}
+
+	@GetMapping("/overview/{id}")
+	public ResponseEntity<OverviewDto> getOverviewById(@PathVariable("id") String overviewId){
+
+		List<Modell> modelle = modellService.getAllModells();
+		OverviewDto overviewDto = new OverviewDto();
+
+		for(int i=0; i<modelle.size(); i++){
+			if(modelle.get(i).getId().equals(overviewId)){
+				overviewDto.setDepartment(modelle.get(i).getDepartment());
+				overviewDto.setEndKnoten(modelle.get(i).getEndKnoten());
+				overviewDto.setId(modelle.get(i).getId());
+				overviewDto.setParentProcess(modelle.get(i).getParentProcess());
+				overviewDto.setProcessDescription(modelle.get(i).getProcessDescription());
+				overviewDto.setEnergySumYear(modelle.get(i).getEnergySumYear());
+				overviewDto.setProcessType(modelle.get(i).getProcessType());
+				overviewDto.setStartKnoten(modelle.get(i).getStartKnoten());
+				return new ResponseEntity<OverviewDto>(overviewDto, HttpStatus.OK);
+
+			}
+		}
+		return new ResponseEntity<OverviewDto>(overviewDto, HttpStatus.NOT_FOUND);
+	}
+
+
+
 
 
 	/**
