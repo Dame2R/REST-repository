@@ -40,4 +40,4 @@ deploy-vm:
     name: production
     url: http://vm11.fkc.hft-stuttgart.de
   only:
-    - main
+    - develop
