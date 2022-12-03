@@ -1,26 +1,5 @@
 stages:
-  - deploy-pages
   - deploy-vm
-
-deploy-pages:
-  image: node
-  stage: deploy-pages
-  variables:
-    PUBLIC_URL: "/wi-inf-projekt-2-greenbpm"
-  cache:
-    paths:
-      - overview/node_modules/
-  script:
-    - cd overview
-    - npm install
-    - CI=false npm run build
-    - rm -rf public
-    - cp build/index.html build/404.html
-    - cd ..
-    - mv overview/build public
-  artifacts:
-    paths:
-      - public
 
 deploy-vm:
   variables:
