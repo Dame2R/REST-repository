@@ -4,7 +4,7 @@ stages:
 
 deploy-pages:
   image: node
-  stage: deploy
+  stage: deploy-pages
   variables:
     PUBLIC_URL: "/wi-inf-projekt-2-greenbpm"
   cache:
@@ -27,7 +27,7 @@ deploy-vm:
     TAG_LATEST: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:latest
     TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
   image: alpine:latest
-  stage: deploy
+  stage: deploy-vm
   tags:
     - deployment
   script:
