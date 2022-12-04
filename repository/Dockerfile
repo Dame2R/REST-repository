@@ -1,4 +1,3 @@
-
 FROM maven:latest
 
 WORKDIR /
