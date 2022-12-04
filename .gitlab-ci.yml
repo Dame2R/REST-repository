@@ -1,13 +1,13 @@
 stages:
-  - deploy-overview-vm
-  - deploy-repo-vm
+  - deploy-vm
+
 
 deploy-overview-vm:
   variables:
     TAG_LATEST: overview:latest
     TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
   image: alpine:latest
-  stage: deploy-overview-vm
+  stage: deploy-vm
   tags:
     - deployment
   script:
@@ -15,7 +15,7 @@ deploy-overview-vm:
     - apk update && apk add openssh-client
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker build -t $TAG_LATEST wi-inf-projekt-2-greenbpm/overview/"
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f overview || true"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -p 3001:3000 --network host --name overview $TAG_LATEST"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -d -p 3001:3000 --name overview $TAG_LATEST"
   environment:
     name: production
     url: http://vm11.fkc.hft-stuttgart.de
@@ -27,7 +27,7 @@ deploy-repo-vm:
     TAG_LATEST: repo:latest
     TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
   image: alpine:latest
-  stage: deploy-repo-vm
+  stage: deploy-vm
   tags:
     - deployment
   script:
@@ -35,7 +35,7 @@ deploy-repo-vm:
     - apk update && apk add openssh-client
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker build -t $TAG_LATEST wi-inf-projekt-2-greenbpm/repository/"
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker container rm -f repo || true"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -p 8084:8084 --network host --name repo $TAG_LATEST"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "docker run -d -p 8084:8084 --name repo $TAG_LATEST"
   environment:
     name: production
     url: http://vm11.fkc.hft-stuttgart.de
