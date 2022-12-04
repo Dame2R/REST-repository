@@ -1,7 +1,6 @@
 stages:
   - deploy-vm
 
-
 deploy-overview-vm:
   variables:
     TAG_LATEST: overview:latest
