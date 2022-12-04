@@ -40,3 +40,4 @@ deploy-repo-vm:
     url: http://vm11.fkc.hft-stuttgart.de
   only:
     - develop
+
