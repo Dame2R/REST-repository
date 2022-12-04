@@ -4,6 +4,7 @@ WORKDIR /
 
 COPY . .
 
+RUN mvn clean install
 RUN mvn clean package
 
 EXPOSE 8084
