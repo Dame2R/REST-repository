@@ -1,5 +1,5 @@
 
-FROM alpine:latest
+FROM maven:latest
 
 WORKDIR /
 
