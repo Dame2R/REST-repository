@@ -25,7 +25,7 @@ deploy-repo-vm:
   variables:
     TAG_LATEST: repo:latest
     TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
-  image: alpine:latest
+  image: maven:latest
   stage: deploy-vm
   tags:
     - deployment
