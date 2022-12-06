@@ -14,7 +14,7 @@ deploy-overview-vm:
     - apk update && apk add openssh-client
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "fuser -KILL -k -n tcp 3000"
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/overview/; ls; npm install;"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/overview/; npm start;"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/overview/; npm run start;"
   environment:
     name: production
     url: http://vm11.fkc.hft-stuttgart.de
