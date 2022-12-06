@@ -14,7 +14,7 @@ const handleClose = (
 }
 return (
     <>
-    <Button onClick={() => setOpen(true)}>Click on Button</Button>
+    <Button onClick={() => setOpen(true)}>Click on Button (Test)</Button>
     <Snackbar
         autoHideDuration={3000}
         open={open}
