@@ -31,6 +31,7 @@ export const useProcessStore = create<ProcessStoreState>((set, get) => ({
         a.energySumYear < b.energySumYear ? 1 : -1
       );
 
+      set({ allProcesses: filteredProcesses });
       set({ topLevelProcesses: filteredProcesses });
 
       get().getCoreProcesses();
@@ -55,7 +56,7 @@ export const useProcessStore = create<ProcessStoreState>((set, get) => ({
   },
   getSupportProcesses: () => {
     const filteredProcesses = get().topLevelProcesses.filter(
-      (e) => e.processType === "SUPPORT"
+      (e) => e.processType === "Supportprozess"
     );
 
     set({ supportProcess: filteredProcesses });

@@ -9,9 +9,23 @@ export default function ProcessEnergySort() {
 
   const allProcesses: any = useProcessStore((state) => state.allProcesses);
 
-  const filteredProcesses: any = allProcesses.filter((obj: any) => {
-    return obj.energySumYear <= 30;
-  });
+  var filteredProcesses: any = [];
+
+  if (energyLevel === "low") {
+    filteredProcesses = allProcesses.filter((obj: any) => {
+      return obj.energySumYear <= 30;
+    });
+  }
+  if (energyLevel === "medium") {
+    filteredProcesses = allProcesses.filter((obj: any) => {
+      return obj.energySumYear > 30 && obj.energySumYear <= 60;
+    });
+  }
+  if (energyLevel === "high") {
+    filteredProcesses = allProcesses.filter((obj: any) => {
+      return obj.energySumYear > 60;
+    });
+  }
 
   return (
     <div>
@@ -19,13 +33,13 @@ export default function ProcessEnergySort() {
         <NavBar />
         <ProcessLandscape
           coreProcesses={filteredProcesses.filter(
-            (p: any) =>  p.processType === "core"
+            (p: any) => p.processType === "CORE"
           )}
           managementProcesses={filteredProcesses.filter(
-            (p: any) =>  p.processType === "management"
+            (p: any) => p.processType === "MANAGEMENT"
           )}
           supportProcesses={filteredProcesses.filter(
-            (p: any) =>  p.processType === "support"
+            (p: any) => p.processType === "Supportprozess"
           )}
         />
       </Stack>
