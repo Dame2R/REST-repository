@@ -13,8 +13,8 @@ deploy-overview-vm:
     - chmod og= $ID_RSA
     - apk update && apk add openssh-client
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "fuser -KILL -k -n tcp 3000"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/overview/ | ls | npm install"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/overview/ | npm start"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/overview/; ls; npm install;"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/overview/; npm start;"
   environment:
     name: production
     url: http://vm11.fkc.hft-stuttgart.de
@@ -33,8 +33,8 @@ deploy-repo-vm:
     - chmod og= $ID_RSA
     - apk update && apk add openssh-client
     - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "fuser -KILL -k -n tcp 8084"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/repository/ | mvn clean package"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/repository/target/ | java -jar springboot-backend-0.0.1-SNAPSHOT.jar"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/repository/; mvn clean package;"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/repository/target/; java -jar springboot-backend-0.0.1-SNAPSHOT.jar;"
   environment:
     name: production
     url: http://vm11.fkc.hft-stuttgart.de
