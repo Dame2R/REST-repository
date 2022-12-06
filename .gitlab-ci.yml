@@ -1,6 +1,26 @@
 stages:
   - deploy-vm
 
+deploy-repo-vm:
+  variables:
+    TAG_LATEST: repo:latest
+    TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
+  image: alpine:latest
+  stage: deploy-vm
+  tags:
+    - deployment
+  script:
+    - chmod og= $ID_RSA
+    - apk update && apk add openssh-client
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "fuser -KILL -k -n tcp 8084"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/repository/; mvn clean package;"
+    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/repository/target/; java -jar springboot-backend-0.0.1-SNAPSHOT.jar &;"
+  environment:
+    name: production
+    url: http://vm11.fkc.hft-stuttgart.de
+  only:
+    - develop
+
 deploy-overview-vm:
   variables:
     TAG_LATEST: overview:latest
@@ -20,24 +40,3 @@ deploy-overview-vm:
     url: http://vm11.fkc.hft-stuttgart.de
   only:
     - develop
-
-deploy-repo-vm:
-  variables:
-    TAG_LATEST: repo:latest
-    TAG_COMMIT: $CI_REGISTRY_IMAGE/$CI_COMMIT_REF_NAME:$CI_COMMIT_SHORT_SHA
-  image: alpine:latest
-  stage: deploy-vm
-  tags:
-    - deployment
-  script:
-    - chmod og= $ID_RSA
-    - apk update && apk add openssh-client
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "fuser -KILL -k -n tcp 8084"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/repository/; mvn clean package;"
-    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/repository/target/; java -jar springboot-backend-0.0.1-SNAPSHOT.jar;"
-  environment:
-    name: production
-    url: http://vm11.fkc.hft-stuttgart.de
-  only:
-    - develop
-
