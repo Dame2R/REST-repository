@@ -1,115 +1,83 @@
 [
     {
      "id": "0001",
-     "name": "Prozess 1",
+     "name": "Strategieentwicklung",
      "processType": "management",
      "energySumYear": 207,
-     "successor": "0020"
+     "successor": "0020;0030",
+     "processDescription": "Strategieentwicklung bezeichnet den Prozess, in dem das Management eines Unternehmen definiert, welche Ziele das Unternehmen erreichen möchte und wie es diese erreicht – kurz-, mittel- und langfristig."
     },
     {
      "id": "0020",
-     "name": "Prozess 2",
+     "name": "Mitarbeiter schulen",
      "processType": "core",
      "energySumYear": 40,
      "predecessor": "0001",
-     "successor": "0030"
+     "processDescription": "Beschäftigte des Unternehmens weiterbilden, sodass sie ihre fachlichen und sozialen Kompetenzen und Fähigkeiten erlernen, erweitern oder vertiefen können."
     },
     {
      "id": "0021",
-     "name": "Prozess 2.1",
+     "name": "Schulungen planen",
      "processType": "support",
      "energySumYear": 132,
-     "parentProcess": "0020"
-    },
-    {
-     "id": "0022",
-     "name": "Prozess 2.2",
-     "processType": "support",
-     "energySumYear": 64,
      "parentProcess": "0020",
-     "predecessor": "0021"
+     "processDescription": "Form, Dauer, Zielgruppe und Schulungsinhalte festlegen"
     },
     {
      "id": "0030",
-     "name": "Prozess 3",
+     "name": "Mitarbeiter einstellen",
      "processType": "core",
      "energySumYear": 80,
-     "predecessor": "0020",
-     "successor": "0004"
+     "predecessor": "0010",
+     "successor": "0050",
+     "processDescription": "Suche, Beurteilung und Einstellung neuerTeammitglieder."
     },
     {
      "id": "0031",
-     "name": "Prozess 3.1",
+     "name": "Stellenausschreibung erstellen",
      "processType": "support",
      "energySumYear": 173,
      "parentProcess": "0030",
-     "successor": "0032"
-    },
-    {
-     "id": "00311",
-     "name": "Prozess 3.11",
-     "processType": "support",
-     "energySumYear": 173,
-     "parentProcess": "0030",
-     "successor": "0031"
-    },
-    {
-     "id": "00312",
-     "name": "Prozess 3.12",
-     "processType": "support",
-     "energySumYear": 173,
-     "parentProcess": "0030",
-     "successor": "0031"
+     "successor": "0032",
+     "processDescription": "Anforderungsprofil des Bewerbers erstellen, sowie die Leistungen des Unternehmens für diese Stelle festlegen."
     },
     {
      "id": "0032",
-     "name": "Prozess 3.2",
+     "name": "Bewerbungsgespräche führen",
      "processType": "support",
      "energySumYear": 19,
      "parentProcess": "0031",
      "predecessor": "0031",
-     "successor": "0033"
-    },
-    {
-     "id": "0033",
-     "name": "Prozess 3.3",
-     "processType": "support",
-     "energySumYear": 173,
-     "parentProcess": "0032",
-     "predecessor": "0032"
+     "processDescription": "Bewerberauswahl für die engere Wahl treffen und interviewen."
     },
     {
      "id": "0004",
-     "name": "Prozess 4",
+     "name": "Kundenservice",
      "processType": "management",
      "energySumYear": 278,
-     "predecessor": "0030"
+     "processDescription": "Unterschiedliche Arten von Kundenbetreuung planen und durchführen."
     },
     {
      "id": "0050",
-     "name": "Prozess 5",
+     "name": "Budgetierung",
      "processType": "core",
-     "energySumYear": 173
+     "energySumYear": 173,
+     "predecessor": "0030",
+     "processDescription": "Das Budget für die nächsten Geschäftsjahre anhand von Analysen festlegen."
     },
     {
      "id": "0051",
-     "name": "Prozess 5.1",
+     "name": "Personalplanung",
      "processType": "support",
      "energySumYear": 54,
-     "parentProcess": "0050"
-    },
-    {
-     "id": "0006",
-     "name": "Prozess 6",
-     "processType": "core",
-     "energySumYear": 57,
-     "successor": "0007"
+     "parentProcess": "0050",
+     "processDescription": "Maßnahmen festlegen, die für den idealen personellen Zustand im Unternehmen sorgen."
     },
     {
      "id": "0007",
-     "name": "Prozess 7",
-     "processType": "management",
+     "name": "Marketingstragetie erstellen",
+     "processType": "support",
      "energySumYear": 27,
-     "predecessor": "0006"
+     "processDescription": "Mithilfe von Marketinganalysen und eigenen Zielen, werden in diesem Prozess die Marketingstrategien festgelegt."
     }
    ]

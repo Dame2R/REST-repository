@@ -7,7 +7,10 @@ import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import { Stack } from "@mui/system";
 import { useNavigate } from 'react-router-dom';
-
+import * as React from 'react';
+import { Instance } from '@popperjs/core';
+import Tooltip from '@mui/material/Tooltip';
+import Button from '@mui/material/Button';
 
 
 export default function SubHeader() {
@@ -47,8 +50,9 @@ export default function SubHeader() {
             sx={{ flexGrow: 1, fontWeight: "bold" }}
           ></Typography>
     
-
+    
     <Box
+    
      sx={{
                
               "&:hover": {
@@ -66,7 +70,10 @@ export default function SubHeader() {
           alignItems="center"
           >
 
-          
+<Box
+            
+            
+          ></Box>
             
           <Box
             sx={{
@@ -82,7 +89,12 @@ export default function SubHeader() {
             }}
             
           ></Box>
-        <h5 style={{ color: "black", padding: 20 }}>Niedrig </h5>
+          <Tooltip title="CO2-Ausstoß weniger als 30 Prozent" arrow>
+      <Button>Niedrig</Button>
+      
+    </Tooltip>
+
+        <h5 style={{ color: "black", padding: 20 }}> </h5>
           
         </Stack>
         </Box>
@@ -108,7 +120,7 @@ export default function SubHeader() {
           >
 
           
-            
+
 
           
           <Box
@@ -124,7 +136,15 @@ export default function SubHeader() {
               },
             }}
           ></Box>
-          <h5 style={{ color: "black", padding: 20 }}>Mittel </h5>
+          <Tooltip title="CO2-Ausstoß zwischen 30 und 170 Prozent" arrow>
+      <Button>Mittel</Button>
+    </Tooltip>
+
+          <Stack style={{ flex: 1 }}>
+     <h5 style={{ color: "black" , padding: 20}}> </h5>
+</Stack>
+
+
           </Stack>
         </Box>
 
@@ -159,7 +179,11 @@ export default function SubHeader() {
               },
             }}
           ></Box>
-          <h5 style={{ color: "black", padding: 20 }}>Hoch </h5>
+          <Tooltip title="CO2 Ausstoß über 170 Prozent" arrow>
+      <Button>Hoch</Button>
+    </Tooltip>
+
+          <h5 style={{ color: "black", padding: 20 }}> </h5>
           </Stack>
         </Box>
         </Toolbar>
@@ -168,5 +192,7 @@ export default function SubHeader() {
     <Box height={100}/>
 
     </>
+    
   );
+  
 }
