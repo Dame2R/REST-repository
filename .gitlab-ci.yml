@@ -1,5 +1,11 @@
 stages:
+  - test
   - deploy-vm
+
+api-test:
+  stage: test
+  script: 
+    - echo 'perform api test'
 
 update-code-on-vm:
   image: alpine:latest
