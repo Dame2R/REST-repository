@@ -2,10 +2,16 @@ stages:
   - test
   - deploy-vm
 
-api-test:
+postman_tests:
   stage: test
-  script: 
-    - echo 'perform api test'
+  image: 
+    name: postman/newman_alpine33
+    entrypoint: [""]
+  script:
+   - newman --version
+   - cd  repository
+   - newman run collection.json
+
 
 update-code-on-vm:
   image: alpine:latest
