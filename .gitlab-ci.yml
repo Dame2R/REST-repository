@@ -1,6 +1,6 @@
 stages:
   - deploy-vm
-  - test
+  - api-test
 
 
 
@@ -22,7 +22,7 @@ update-code-on-vm:
 
 
 postman_tests:
-  stage: test
+  stage: api-test
   image: 
     name: postman/newman_alpine33
     entrypoint: [""]
