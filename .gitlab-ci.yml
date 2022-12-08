@@ -32,4 +32,4 @@ postman_tests:
    - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP "cd wi-inf-projekt-2-greenbpm/;"
    - newman --version
    - cd  repository
-   #- newman run collection.json
+   - newman run collection.json
