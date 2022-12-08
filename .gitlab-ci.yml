@@ -21,18 +21,6 @@ update-code-on-vm:
     - develop
 
 
-run-backend:
-  stage: deploy-vm
-  image: alpine:latest
-  script:
-   - chmod og= $ID_RSA
-   - apk update && apk add openssh-client
-   - ssh -i $ID_RSA -o StrictHostKeyChecking=no $SERVER_USER@$SERVER_IP 
-   - install maven
-   - cd wi-inf-projekt-2-greenbpm/
-   - cd  repository
-   - mvn spring-boot:run
-
 postman_tests:
   stage: test
   image: 
