@@ -4,7 +4,7 @@ public class OverviewDto {
 
     private String id;
 
-    private String parentProcess;
+    private String childProcess;
 
     private String startKnoten;
 
@@ -26,12 +26,12 @@ public class OverviewDto {
         this.id = id;
     }
 
-    public String getParentProcess() {
-        return parentProcess;
+    public String getChildProcess() {
+        return childProcess;
     }
 
-    public void setParentProcess(String parentProcess) {
-        this.parentProcess = parentProcess;
+    public void setChildProcess(String childProcess) {
+        this.childProcess = childProcess;
     }
 
     public String getStartKnoten() {

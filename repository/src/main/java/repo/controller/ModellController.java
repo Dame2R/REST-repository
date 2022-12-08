@@ -45,7 +45,6 @@ public class ModellController {
 
 	@PostMapping(path = "/modell", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	public String saveModel(@RequestBody String xml){
-
 		Modell modell = new Modell();
 
 		try{
@@ -56,35 +55,74 @@ public class ModellController {
 			Document document = builder.parse(is);
 			document.getDocumentElement().normalize();
 
-			//id  auslesen und in modell schreiben
-			Node nodeId = document.getElementsByTagName("process").item(0).getAttributes().item(0);
-			modell.setId(nodeId.getNodeValue());
+			System.out.println("Test1");
+			//DOM-Parser sortiert intern nach alphabet
 
+			modell.setDepartment(document.getElementsByTagName("bpmn:process").item(0).getAttributes().item(0).getNodeValue());
+			modell.setId(document.getElementsByTagName("bpmn:process").item(0).getAttributes().item(1).getNodeValue());
+			modell.setProcessType(document.getElementsByTagName("bpmn:process").item(0).getAttributes().item(3).getNodeValue());
 			//startEvent finden
-			NodeList startEvent = document.getElementsByTagName("startEvent");
-			Node startEventNodeName = startEvent.item(0); //start_knoten name finden
-			modell.setStartKnoten(startEventNodeName.getAttributes().item(1).getNodeValue());
+			System.out.println("Test2");
+			NodeList startEvent = document.getElementsByTagName("bpmn:startEvent");
+
+			String startEventString = "";
+			for(int i=0; i<startEvent.getLength(); i++){
+				Node startEventNodeName = startEvent.item(i);
+				startEventString += startEventNodeName.getAttributes().item(0).getNodeValue() + ";";
+			}
+			modell.setStartKnoten(startEventString);
+			System.out.println("Test3");
 
 			//Wenn kein endEvent in der XML gefunden wurde, soll das Feld in der DB null bleiben
-			if(document.getElementsByTagName("endEvent").getLength() != 0){
-				NodeList endEvent = document.getElementsByTagName("endEvent");
-				Node item1 = endEvent.item(0);
-				modell.setEndKnoten(item1.getAttributes().item(1).getNodeValue());
+			if(document.getElementsByTagName("bpmn:endEvent").getLength() != 0){
+				NodeList endEvent = document.getElementsByTagName("bpmn:endEvent");
+				String endEventStrings = "";
+				for(int i=0; i<endEvent.getLength(); i++){
+					Node item1 = endEvent.item(i);
+					endEventStrings += item1.getAttributes().item(0).getNodeValue() + ";";
+				}
+				modell.setEndKnoten(endEventStrings);
 			}
-
-			//XML als BLOB einfügen
+			System.out.println("Test4");
+//			XML als BLOB einfügen
 			modell.setXml(new SerialBlob(xml.getBytes()));
 
+			//Child Prozesse speichern wenn vorhanden
+			if(document.getElementsByTagName("zeebe:calledElement").getLength() != 0){
+				NodeList callActivity = document.getElementsByTagName("zeebe:calledElement");
+				String callActivityString = "";
+				for(int i=0; i<callActivity.getLength(); i++){
+					Node item1 = callActivity.item(i);
+					callActivityString += item1.getAttributes().item(0).getNodeValue() + ";";
+				}
+				modell.setChildProcess(callActivityString);
+			}
+			System.out.println("Test5");
+			//CO2 summieren
+			int co2 = 0;
+			if(document.getElementsByTagName("zeebe:property").getLength() != 0){
+				NodeList task = document.getElementsByTagName("zeebe:property");
+				for(int i=0; i<task.getLength(); i++) {
+					//Es dürfen keine leeren Properties vorkommen.
+					if (task.item(i).getAttributes().item(0).getNodeValue().equals("CO2")) {
+						System.out.println(task.item(i).getAttributes().item(1).getNodeValue());
+						co2 += Integer.parseInt(task.item(i).getAttributes().item(1).getNodeValue());
+						System.out.println(task.item(i).getAttributes().item(1).getNodeValue());
+					}
+				}
+				System.out.println("Tttt");
+				modell.setEnergySumYear(co2);
+				System.out.println(modell.getEnergySumYear());
+			}
+			System.out.println("Test6");
 
-			//CO2 einfügen
-			modell.setEnergySumYear(200);
-			modell.setDepartment("tbd");
-			modell.setProcessDescription("tbd");
-			modell.setProcessType("tbd");
-			modell.setParentProcess("tbd");
+			if(document.getElementsByTagName("bpmn:documentation").getLength() != 0){
+				NodeList documentation = document.getElementsByTagName("bpmn:documentation");
+				modell.setProcessDescription( documentation.item(0).getTextContent() );
+			}
 
 			modellService.saveModell(modell);
-
+			System.out.println("Test7");
 
 
 		}catch(Exception e){
@@ -120,11 +158,11 @@ public class ModellController {
 				overviewDto.setDepartment(modelle.get(i).getDepartment());
 				overviewDto.setEndKnoten(modelle.get(i).getEndKnoten());
 				overviewDto.setId(modelle.get(i).getId());
-				overviewDto.setParentProcess(modelle.get(i).getParentProcess());
 				overviewDto.setProcessDescription(modelle.get(i).getProcessDescription());
 				overviewDto.setEnergySumYear(modelle.get(i).getEnergySumYear());
 				overviewDto.setProcessType(modelle.get(i).getProcessType());
 				overviewDto.setStartKnoten(modelle.get(i).getStartKnoten());
+				overviewDto.setChildProcess(modelle.get(i).getChildProcess());
 				return new ResponseEntity<OverviewDto>(overviewDto, HttpStatus.OK);
 
 			}
@@ -181,8 +219,8 @@ public class ModellController {
 			overviewDto.setId(allModells.get(i).getId());
 			overviewDto.setEnergySumYear(allModells.get(i).getEnergySumYear());
 			overviewDto.setProcessDescription(allModells.get(i).getProcessDescription());
-			overviewDto.setParentProcess(allModells.get(i).getParentProcess());
 			overviewDto.setEndKnoten(allModells.get(i).getEndKnoten());
+			overviewDto.setChildProcess(allModells.get(i).getChildProcess());
 			overviewDtos.add(overviewDto);
 		}
 		return overviewDtos;

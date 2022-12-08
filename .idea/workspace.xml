@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8da98d67-d4ed-4cb1-9ac1-dbc5654bc19f" name="Changes" comment="Ticket#91 Neue Methode ersetzt alte Methode zum Listen aller overviews. Jetzt können auch RequestParameter übergeben werden. Vorerst nur &quot;CO2&quot;. Andere können leicht hinzugefügt werden.">
+    <list default="true" id="8da98d67-d4ed-4cb1-9ac1-dbc5654bc19f" name="Changes" comment="Die Overview Klassen wurden obsolet. Sind jetzt in Modell integriert.">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_modelmapper_modelmapper_3_1_0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repository/src/main/java/repo/controller/ModellController.java" beforeDir="false" afterPath="$PROJECT_DIR$/repository/src/main/java/repo/controller/ModellController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/repository/src/main/java/repo/dtos/OverviewDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/repository/src/main/java/repo/dtos/OverviewDto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/repository/src/main/java/repo/model/Modell.java" beforeDir="false" afterPath="$PROJECT_DIR$/repository/src/main/java/repo/model/Modell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/repository/src/main/java/repo/service/impl/ModellServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/repository/src/main/java/repo/service/impl/ModellServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -220,7 +221,18 @@
       <workItem from="1669115881401" duration="4255000" />
       <workItem from="1669198738492" duration="6095000" />
       <workItem from="1669221934347" duration="1023000" />
-      <workItem from="1669291884144" duration="7249000" />
+      <workItem from="1669291884144" duration="7315000" />
+      <workItem from="1669303494365" duration="3282000" />
+      <workItem from="1669315772875" duration="11000" />
+      <workItem from="1669373133431" duration="464000" />
+      <workItem from="1669646226590" duration="5440000" />
+      <workItem from="1669895300556" duration="372000" />
+      <workItem from="1669896117780" duration="5804000" />
+      <workItem from="1669976057343" duration="1664000" />
+      <workItem from="1669982538759" duration="277000" />
+      <workItem from="1670237964333" duration="2238000" />
+      <workItem from="1670252358995" duration="4671000" />
+      <workItem from="1670498890738" duration="12798000" />
     </task>
     <task id="LOCAL-00001" summary="7 - Projektstruktur festlegen&#10;Projektstruktur, REST-Controller Template, Spring Application">
       <created>1666378927163</created>
@@ -306,7 +318,56 @@
       <option name="project" value="LOCAL" />
       <updated>1669118835205</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Neuen Tabellenaufbau und erste Schritte im DOM Parser.">
+      <created>1669299666476</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1669299666476</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Modell Klasse erweitert um Overview Attribute">
+      <created>1669897001122</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1669897001122</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Modell Controller überarbeitet. Methode saveModel und getOverviewById angepasst an neue DB Struktur">
+      <created>1669900395414</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1669900395414</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Modell Controller überarbeitet. Methode saveModel und getOverviewById angepasst an neue DB Struktur">
+      <created>1669900405613</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1669900405613</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Modell Controller Methode getAllOverviewsWithOptionalRequestParam überarbeitet. Jetzt funktioniert diese auch mit der neuen DB">
+      <created>1669901022720</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1669901022720</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Modell Controller Methode getAllOverviewsWithProcessTypeCore überarbeitet. Jetzt funktioniert diese auch mit der neuen DB">
+      <created>1669901613401</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1669901613401</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Die Overview Klassen wurden obsolet. Sind jetzt in Modell integriert.">
+      <created>1669901815665</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1669901815665</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -317,7 +378,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -341,6 +414,23 @@
     <MESSAGE value="Ticket#57 Overview.java wurde um die neuen Attribute ergänzt. Im folgenden Sprint abklären, wie sich predecessor von parentprocess etc. unterscheidet." />
     <MESSAGE value="Ticket#58 Dependency für .jar eingefügt. Jar wird im target ordner angelegt." />
     <MESSAGE value="Ticket#86 Pfadname wurde refactored. Ungenutzte Methoden vorerst auskommentiert." />
-    <option name="LAST_COMMIT_MESSAGE" value="Ticket#86 Pfadname wurde refactored. Ungenutzte Methoden vorerst auskommentiert." />
+    <MESSAGE value="Neuen Tabellenaufbau und erste Schritte im DOM Parser." />
+    <MESSAGE value="Modell Klasse erweitert um Overview Attribute" />
+    <MESSAGE value="Modell Controller überarbeitet. Methode saveModel und getOverviewById angepasst an neue DB Struktur" />
+    <MESSAGE value="Modell Controller Methode getAllOverviewsWithOptionalRequestParam überarbeitet. Jetzt funktioniert diese auch mit der neuen DB" />
+    <MESSAGE value="Modell Controller Methode getAllOverviewsWithProcessTypeCore überarbeitet. Jetzt funktioniert diese auch mit der neuen DB" />
+    <MESSAGE value="Die Overview Klassen wurden obsolet. Sind jetzt in Modell integriert." />
+    <option name="LAST_COMMIT_MESSAGE" value="Die Overview Klassen wurden obsolet. Sind jetzt in Modell integriert." />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/repository/src/main/java/repo/controller/ModellController.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

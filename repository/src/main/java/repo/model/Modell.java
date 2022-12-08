@@ -5,6 +5,7 @@ import javax.persistence.*;
 import lombok.Data;
 
 import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.Date;
 
 @Data
@@ -18,8 +19,9 @@ public class Modell {
 	@Lob
 	private Blob xml;
 
-	@Column(name = "parentProcess")
-	private String parentProcess;
+
+	@Column(name = "childProcess")
+	private String childProcess;
 
 	@Column(name = "startKnoten")
 	private String startKnoten;
