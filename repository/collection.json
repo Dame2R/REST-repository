@@ -57,7 +57,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://193.196.143.145:8084/modell/Process_1",
+					"raw": "http://193.196.143.145:8084/modell/Process_0vjv4zs",
 					"protocol": "http",
 					"host": [
 						"193",
@@ -68,7 +68,7 @@
 					"port": "8084",
 					"path": [
 						"modell",
-						"Process_1"
+						"Process_0vjv4zs"
 					]
 				}
 			},
@@ -98,7 +98,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://193.196.143.145:8084/overview/Process_1",
+					"raw": "http://193.196.143.145:8084/overview/Process_0vjv4zs",
 					"protocol": "http",
 					"host": [
 						"193",
@@ -109,7 +109,7 @@
 					"port": "8084",
 					"path": [
 						"overview",
-						"Process_1"
+						"Process_0vjv4zs"
 					]
 				}
 			},
