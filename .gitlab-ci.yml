@@ -30,11 +30,11 @@ unit-test:
     - mvn test
     - cd
   artifacts:
-    paths:
-      - target/surefire-reports/TEST-*.xml
+    when: always
     reports:
       junit:
         - target/surefire-reports/TEST-*.xml
+        - target/failsafe-reports/TEST-*.xml
 
 
 
