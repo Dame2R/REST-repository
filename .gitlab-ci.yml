@@ -28,12 +28,13 @@ unit-test:
     - echo 'run Unit Tests....'
     - cd repository
     - mvn test
+    - cd
   artifacts:
     paths:
-      - repository/surefire-reports/TEST-*.xml
+      - target/surefire-reports/TEST-*.xml
     reports:
       junit:
-        - repository/surefire-reports/TEST-*.xml
+        - target/surefire-reports/TEST-*.xml
 
 
 
