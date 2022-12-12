@@ -33,8 +33,8 @@ unit-test:
     when: always
     reports:
       junit:
-        - wi-inf-projekt-2-greenbpm/repository/target/surefire-reports/TEST-*.xml
-        - wi-inf-projekt-2-greenbpm/repository/target/failsafe-reports/TEST-*.xml
+        - repository/target/surefire-reports/TEST-*.xml
+        - repository/target/failsafe-reports/TEST-*.xml
 
 
 
