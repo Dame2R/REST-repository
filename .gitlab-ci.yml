@@ -30,10 +30,10 @@ unit-test:
     - mvn test
   artifacts:
     paths:
-      - target/repository/surefire-reports/TEST-*.xml
+      - repository/surefire-reports/TEST-*.xml
     reports:
       junit:
-        - target/repository/surefire-reports/TEST-*.xml
+        - repository/surefire-reports/TEST-*.xml
 
 
 
