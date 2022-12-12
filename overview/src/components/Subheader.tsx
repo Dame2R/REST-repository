@@ -25,7 +25,7 @@ export default function SubHeader() {
         style={{ background: "white", color: "black", padding: 0}}
       >
         <Toolbar>
-          <FormControl sx={{ width: 1 / 8 }}>
+   {/*        <FormControl sx={{ width: 1 / 8 }}>
             <InputLabel variant="standard" htmlFor="uncontrolled-native">
               Department
             </InputLabel>
@@ -41,7 +41,7 @@ export default function SubHeader() {
               <option value={10}>Production</option>
               <option value={10}>Sales Department</option>
             </NativeSelect>
-          </FormControl>
+          </FormControl> */}
 
           <Box width={30} />
           <Typography
