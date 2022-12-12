@@ -22,7 +22,7 @@ update-code-on-vm:
     - develop
   
 unit-test:
-  image: maven:3-jdk-8-alpine
+  image: maven:3.6.3-jdk-11
   stage: unit-test
   script:
     - echo 'run Unit Tests....'
