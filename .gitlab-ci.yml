@@ -43,5 +43,6 @@ postman_tests:
    - newman --version
    - cd  repository
    #- newman run collection.json
-  only: main
+  only: 
+    - main
    
