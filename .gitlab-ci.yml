@@ -1,6 +1,7 @@
 stages:
   - deploy-vm
   - api-test
+  - unit test
 
 
 
@@ -19,6 +20,13 @@ update-code-on-vm:
     url: http://vm11.fkc.hft-stuttgart.de
   only:
     - develop
+  
+unit-test:
+  image: alpine:latest
+  stage: unit-test
+  script:
+    - mvn test
+
 
 
 postman_tests:
