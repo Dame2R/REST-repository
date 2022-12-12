@@ -1,7 +1,7 @@
 stages:
   - deploy-vm
   - api-test
-  - unit test
+  - unit-test
 
 
 
