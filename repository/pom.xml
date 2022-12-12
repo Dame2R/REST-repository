@@ -15,7 +15,7 @@
 	<packaging>jar</packaging>
 	<description>Spring Boot RESTful Web Services</description>
 	<properties>
-		<java.version>16</java.version>
+		<java.version>8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
