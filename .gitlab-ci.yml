@@ -25,6 +25,7 @@ unit-test:
   image: maven:3-jdk-8-alpine
   stage: unit-test
   script:
+    - echo 'run Unit Tests....'
     - cd repository
     - mvn test
 
