@@ -24,6 +24,8 @@ update-code-on-vm:
 unit-test:
   image: maven:3.6.3-jdk-11
   stage: unit-test
+  tags:
+    - backend
   script:
     - echo 'run Unit Tests....'
     - cd repository
