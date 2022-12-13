@@ -17,7 +17,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-class SpringbootBackendApplicationTests {
+public class SpringbootBackendApplicationTests {
 	
     @Autowired
 	private WebApplicationContext webApplicationContext;
@@ -25,14 +25,14 @@ class SpringbootBackendApplicationTests {
 	private MockMvc mockMvc;
 
 	@Before
-    void setup() {
+    public void setup() {
 		mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 	}
 	@Test
-	void contextLoads() {
+	 public void contextLoads() {
 	}
 	@Test
-	void testProcessOverview(){
+	public void testProcessOverview() throws Exception {
         //Expected Output
         /*    
     "id": "Process_0vjv4zs",
@@ -44,7 +44,6 @@ class SpringbootBackendApplicationTests {
     "department": "Verkauf",
     "processDescription": "Dies ist eine Prozessbeschreibung\nad"
 } */
-/* 
 	mockMvc.perform(get("/overview/Process_0vjv4zs")).andExpect(status().isOk())
 				.andExpect(content().contentType("application/json;"))
                 .andExpect(jsonPath("$.id").value("Process_0vjv4zs"))
@@ -54,7 +53,7 @@ class SpringbootBackendApplicationTests {
                 .andExpect(jsonPath("$.energySumYear").value(50))
                 .andExpect(jsonPath("$.processType").value("nicht core"))
                 .andExpect(jsonPath("$.department").value("Verkauf"))
-                .andExpect(jsonPath("$.processDescription").value("Dies ist eine Prozessbeschreibung\nad"));*/
+                .andExpect(jsonPath("$.processDescription").value("Dies ist eine Prozessbeschreibung\nad"));
 				
 	}
 
