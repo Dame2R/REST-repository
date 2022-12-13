@@ -27,7 +27,7 @@ unit-test:
   tags:
     - backend
   script:
-    - echo 'run Unit Tests....'
+    - echo 'run Unit Tests.....'
     - cd repository
     - mvn test
     - cd
