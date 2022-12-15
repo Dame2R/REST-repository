@@ -12,13 +12,15 @@ import java.util.Date;
 @Entity
 @Table(name="modell")
 public class Modell {
-	
+
 	@Id
 	private String id;
 
 	@Lob
 	private Blob xml;
 
+	@Column(name = "name")
+	private String name;
 
 	@Column(name = "childProcess")
 	private String childProcess;
