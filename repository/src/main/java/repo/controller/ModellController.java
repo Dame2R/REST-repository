@@ -55,7 +55,7 @@ public class ModellController {
 			Document document = builder.parse(is);
 			document.getDocumentElement().normalize();
 
-			System.out.println("Test1");
+
 			//DOM-Parser sortiert intern nach alphabet
 
 			modell.setDepartment(document.getElementsByTagName("bpmn:process").item(0).getAttributes().item(0).getNodeValue());
@@ -63,7 +63,6 @@ public class ModellController {
 			modell.setName(document.getElementsByTagName("bpmn:process").item(0).getAttributes().item(3).getNodeValue());
 			modell.setProcessType(document.getElementsByTagName("bpmn:process").item(0).getAttributes().item(4).getNodeValue());
 			//startEvent finden
-			System.out.println("Test2");
 			NodeList startEvent = document.getElementsByTagName("bpmn:startEvent");
 
 			String startEventString = "";
@@ -72,7 +71,6 @@ public class ModellController {
 				startEventString += startEventNodeName.getAttributes().item(0).getNodeValue() + ";";
 			}
 			modell.setStartKnoten(startEventString);
-			System.out.println("Test3");
 
 			//Wenn kein endEvent in der XML gefunden wurde, soll das Feld in der DB null bleiben
 			if(document.getElementsByTagName("bpmn:endEvent").getLength() != 0){
@@ -84,7 +82,6 @@ public class ModellController {
 				}
 				modell.setEndKnoten(endEventStrings);
 			}
-			System.out.println("Test4");
 //			XML als BLOB einfügen
 			modell.setXml(new SerialBlob(xml.getBytes()));
 
@@ -98,7 +95,6 @@ public class ModellController {
 				}
 				modell.setChildProcess(callActivityString);
 			}
-			System.out.println("Test5");
 			//CO2 summieren
 			int co2 = 0;
 			if(document.getElementsByTagName("zeebe:property").getLength() != 0){
@@ -106,17 +102,11 @@ public class ModellController {
 				for(int i=0; i<task.getLength(); i++) {
 					//Es dürfen keine leeren Properties vorkommen.
 					if (task.item(i).getAttributes().item(0).getNodeValue().equals("CO2")) {
-						System.out.println(task.item(i).getAttributes().item(1).getNodeValue());
 						co2 += Integer.parseInt(task.item(i).getAttributes().item(1).getNodeValue());
-						System.out.println(task.item(i).getAttributes().item(1).getNodeValue());
 					}
 				}
-				System.out.println("Tttt");
 				modell.setEnergySumYear(co2);
-				System.out.println(modell.getEnergySumYear());
 			}
-			System.out.println("Test6");
-
 			if(document.getElementsByTagName("bpmn:documentation").getLength() != 0){
 				NodeList documentation = document.getElementsByTagName("bpmn:documentation");
 				modell.setProcessDescription( documentation.item(0).getTextContent() );
@@ -124,7 +114,6 @@ public class ModellController {
 
 
 			modellService.saveModell(modell);
-			System.out.println("Test7");
 
 
 		}catch(Exception e){
@@ -229,34 +218,5 @@ public class ModellController {
 		}
 		return overviewDtos;
 	}
-
-
-
-	/**
-	 * Diese Methoden werden Stück für Stück an die UserStories angepasst. Bis dahin bleiben Sie auskommentiert.
-
-
-	 @PutMapping("/modell/{id}")
-	 public ResponseEntity<Modell> updateModell(@PathVariable("id") long id
-	 , @RequestBody Modell modell){
-	 return new ResponseEntity<Modell>(modellService.updateModell(modell, id), HttpStatus.OK);
-	 }
-
-	 @DeleteMapping("/modell/{id}")
-	 public ResponseEntity<String> deleteModell(@PathVariable("id") long id){
-
-	 modellService.deleteModell(id);
-
-	 return new ResponseEntity<String>("Modell deleted successfully!.", HttpStatus.OK);
-	 }
-	 */
-
-	/** Brauchen wir nicht vom UseCase her
-
-	 @GetMapping("/modelle")
-	 public List<Modell> getAllModell(){
-	 return modellService.getAllModells();
-	 }
-	 */
 
 }
