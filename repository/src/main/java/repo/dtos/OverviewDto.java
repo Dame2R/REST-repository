@@ -4,6 +4,8 @@ public class OverviewDto {
 
     private String id;
 
+    private String name;
+
     private String childProcess;
 
     private String startKnoten;
@@ -17,6 +19,14 @@ public class OverviewDto {
     private String department;
 
     private String processDescription;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getId() {
         return id;
