@@ -35,7 +35,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 @RestController
 @RequestMapping()
 public class ModellController {
-	
+
 	private ModellService modellService;
 
 	public ModellController(ModellService modellService) {
@@ -60,7 +60,8 @@ public class ModellController {
 
 			modell.setDepartment(document.getElementsByTagName("bpmn:process").item(0).getAttributes().item(0).getNodeValue());
 			modell.setId(document.getElementsByTagName("bpmn:process").item(0).getAttributes().item(1).getNodeValue());
-			modell.setProcessType(document.getElementsByTagName("bpmn:process").item(0).getAttributes().item(3).getNodeValue());
+			modell.setName(document.getElementsByTagName("bpmn:process").item(0).getAttributes().item(3).getNodeValue());
+			modell.setProcessType(document.getElementsByTagName("bpmn:process").item(0).getAttributes().item(4).getNodeValue());
 			//startEvent finden
 			System.out.println("Test2");
 			NodeList startEvent = document.getElementsByTagName("bpmn:startEvent");
@@ -121,6 +122,7 @@ public class ModellController {
 				modell.setProcessDescription( documentation.item(0).getTextContent() );
 			}
 
+
 			modellService.saveModell(modell);
 			System.out.println("Test7");
 
@@ -163,6 +165,7 @@ public class ModellController {
 				overviewDto.setProcessType(modelle.get(i).getProcessType());
 				overviewDto.setStartKnoten(modelle.get(i).getStartKnoten());
 				overviewDto.setChildProcess(modelle.get(i).getChildProcess());
+				overviewDto.setName(modelle.get(i).getName());
 				return new ResponseEntity<OverviewDto>(overviewDto, HttpStatus.OK);
 
 			}
@@ -221,6 +224,7 @@ public class ModellController {
 			overviewDto.setProcessDescription(allModells.get(i).getProcessDescription());
 			overviewDto.setEndKnoten(allModells.get(i).getEndKnoten());
 			overviewDto.setChildProcess(allModells.get(i).getChildProcess());
+			overviewDto.setName(allModells.get(i).getName());
 			overviewDtos.add(overviewDto);
 		}
 		return overviewDtos;
@@ -232,20 +236,20 @@ public class ModellController {
 	 * Diese Methoden werden Stück für Stück an die UserStories angepasst. Bis dahin bleiben Sie auskommentiert.
 
 
-	@PutMapping("/modell/{id}")
-	public ResponseEntity<Modell> updateModell(@PathVariable("id") long id
-												  , @RequestBody Modell modell){
-		return new ResponseEntity<Modell>(modellService.updateModell(modell, id), HttpStatus.OK);
-	}
+	 @PutMapping("/modell/{id}")
+	 public ResponseEntity<Modell> updateModell(@PathVariable("id") long id
+	 , @RequestBody Modell modell){
+	 return new ResponseEntity<Modell>(modellService.updateModell(modell, id), HttpStatus.OK);
+	 }
 
-	@DeleteMapping("/modell/{id}")
-	public ResponseEntity<String> deleteModell(@PathVariable("id") long id){
+	 @DeleteMapping("/modell/{id}")
+	 public ResponseEntity<String> deleteModell(@PathVariable("id") long id){
 
-		modellService.deleteModell(id);
+	 modellService.deleteModell(id);
 
-		return new ResponseEntity<String>("Modell deleted successfully!.", HttpStatus.OK);
-	}
-	*/
+	 return new ResponseEntity<String>("Modell deleted successfully!.", HttpStatus.OK);
+	 }
+	 */
 
 	/** Brauchen wir nicht vom UseCase her
 
