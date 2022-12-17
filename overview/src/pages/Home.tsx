@@ -25,7 +25,6 @@ export default function Home() {
         managementProcesses={managementProcess}
         supportProcesses={supportProcess}
       />
-      <MuiSnackbar />
     </Stack>
   );
 }
