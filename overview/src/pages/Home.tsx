@@ -5,18 +5,16 @@ import ProcessLandscape from "../components/ProcessLandscape";
 import { useProcessStore } from "../stores/process_store";
 
 export default function Home() {
-  const topLevelProcesses: any = useProcessStore(
+  const topLevelProcesses = useProcessStore(
     (state) => state.topLevelProcesses
   );
-  const getTopLevelProcesses = useProcessStore(
-    (state) => state.getTopLevelProcesses
-  );
+  const fetchProcesses = useProcessStore((state) => state.fetchProcesses);
   const coreProcesses = useProcessStore((state) => state.coreProcesses);
-  const managementProcess = useProcessStore((state) => state.managementProcess);
-  const supportProcess = useProcessStore((state) => state.supportProcess);
+  const managementProcess = useProcessStore((state) => state.managementProcesses);
+  const supportProcess = useProcessStore((state) => state.supportProcesses);
 
-  if (topLevelProcesses.length == 0) {
-    getTopLevelProcesses();
+  if (topLevelProcesses.length === 0) {
+    fetchProcesses();
   }
 
   return (

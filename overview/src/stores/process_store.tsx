@@ -1,64 +1,43 @@
 import create from "zustand";
-import mock_procceess from "../mock/mock_data.json";
+import mockProcesses from "../mock/mock_data.json";
 import axios from "axios";
+import { Process } from "../types/Process";
 
 type ProcessStoreState = {
-  allProcesses: any[];
-  topLevelProcesses: any[];
-  coreProcesses: any[];
-  managementProcess: any[];
-  supportProcess: any[];
-  getTopLevelProcesses: Function;
-  getCoreProcesses: Function;
-  getManagementProcesses: Function;
-  getSupportProcesses: Function;
+  allProcesses: Process[];
+  topLevelProcesses: Process[];
+  coreProcesses: Process[];
+  managementProcesses: Process[];
+  supportProcesses: Process[];
+  fetchProcesses: Function;
 };
 
 export const useProcessStore = create<ProcessStoreState>((set, get) => ({
-  allProcesses: mock_procceess,
+  allProcesses: [],
   topLevelProcesses: [],
   coreProcesses: [],
-  managementProcess: [],
-  supportProcess: [],
-  getTopLevelProcesses: () => {
-    axios.get("/overviews").then((response) => {
-      console.log(response.data);
-      const filteredProcesses = response.data;
-      // const filteredProcesses = response.data.filter(
-      //   (e) => e.parentProcess === undefined
-      // );
-      filteredProcesses.sort((a: any, b: any) =>
-        a.energySumYear < b.energySumYear ? 1 : -1
-      );
+  managementProcesses: [],
+  supportProcesses: [],
+  fetchProcesses: async () => {
+    const processes = axios.get<Process[]>("/overviews")
+      .then((response) => {
+        return response.data;
+      })
+      .catch((reason) => {
+        console.log('Failed to get processes', reason)
+        return mockProcesses as Process[];
+      })
+      .then((processes) => {
+        return processes.sort((a: any, b: any) =>
+          a.energySumYear < b.energySumYear ? 1 : -1
+        );
+      })
 
-      set({ allProcesses: filteredProcesses });
-      set({ topLevelProcesses: filteredProcesses });
 
-      get().getCoreProcesses();
-      get().getManagementProcesses();
-      get().getSupportProcesses();
-    });
-  },
-
-  getCoreProcesses: () => {
-    const filteredProcesses = get().topLevelProcesses.filter(
-      (e) => e.processType === "CORE"
-    );
-
-    set({ coreProcesses: filteredProcesses });
-  },
-  getManagementProcesses: () => {
-    const filteredProcesses = get().topLevelProcesses.filter(
-      (e) => e.processType === "MANAGEMENT"
-    );
-
-    set({ managementProcess: filteredProcesses });
-  },
-  getSupportProcesses: () => {
-    const filteredProcesses = get().topLevelProcesses.filter(
-      (e) => e.processType === "Supportprozess"
-    );
-
-    set({ supportProcess: filteredProcesses });
+    set({ allProcesses: await processes });
+    set({ topLevelProcesses: (await processes).filter(p => p.parent === undefined) });
+    set({ coreProcesses: (await processes).filter(p => p.type === 'core') });
+    set({ managementProcesses: (await processes).filter(p => p.type === 'management') });
+    set({ supportProcesses: (await processes).filter(p => p.type === 'support') });
   },
 }));

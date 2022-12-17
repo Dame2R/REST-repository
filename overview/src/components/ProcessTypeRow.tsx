@@ -2,16 +2,16 @@ import { Box, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 import { ProcessCard } from "./ProcessCard";
 import ArrowIcon from "@mui/icons-material/ChevronRight";
+import { Process } from "../types/Process";
 
 type ProcessTypeRowProps = {
   title: string;
-  processes: any[];
-  
+  processes: Process[];
 };
 
 export default function ProcessTypeRow(props: ProcessTypeRowProps) {
   const processCards = props.processes.map((process: any, index) => {
-    const isLast = index === props.processes.length-1;
+    const isLast = index === props.processes.length - 1;
 
     return (
       <>

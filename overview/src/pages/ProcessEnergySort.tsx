@@ -9,7 +9,7 @@ import SubHeader from "../components/Subheader";
 export default function ProcessEnergySort() {
   const { energyLevel } = useParams();
 
-  const allProcesses: any = useProcessStore((state) => state.allProcesses);
+  const allProcesses = useProcessStore((state) => state.allProcesses);
 
   var filteredProcesses: any = [];
 

@@ -7,10 +7,10 @@ import { useParams } from "react-router-dom";
 export default function ProcessDetails() {
   const { id } = useParams();
 
-  const allProcesses: any = useProcessStore((state) => state.allProcesses);
+  const allProcesses = useProcessStore((state) => state.allProcesses);
 
   const parentProcessIndex = allProcesses.findIndex(
-    (p: any) => p.id == id
+    (p: any) => p.id === id
   );
 
   return (
@@ -22,12 +22,12 @@ export default function ProcessDetails() {
         <ProcessLandscape
           parentProcess={allProcesses[parentProcessIndex]}
           coreProcesses={allProcesses.filter(
-            (p: any) => p.parentProcess === id && p.processType === "core"
+            p => p.parent === id && p.type === "core"
           )}
           managementProcesses={allProcesses.filter(
-            (p: any) => p.parentProcess === id && p.processType === "management"
+            p => p.parent === id && p.type === "management"
           )}
-          supportProcesses={allProcesses.filter((p: any) => p.parentProcess === id && p.processType === "support")}
+          supportProcesses={allProcesses.filter(p => p.parent === id && p.type === "support")}
         />
       </Stack>
     </div>

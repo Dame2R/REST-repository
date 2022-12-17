@@ -1,8 +1,9 @@
 import { Card, Typography, CardContent, Box, Stack } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { Process } from "../types/Process";
 
 type ProcessCardProps = {
-  process: any;
+  process: Process;
 };
 
 function colorBox(energy: number): string {
