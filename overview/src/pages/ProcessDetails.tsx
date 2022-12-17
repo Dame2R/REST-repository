@@ -7,27 +7,29 @@ import { useParams } from "react-router-dom";
 export default function ProcessDetails() {
   const { id } = useParams();
 
-  const allProcesses = useProcessStore((state) => state.allProcesses);
+  const getProcess = useProcessStore((state) => state.getProcess);
+  const getParentProcess = useProcessStore((state) => state.getParentProcess);
+  const getChildProcesses = useProcessStore((state) => state.getChildProcesses);
 
-  const parentProcessIndex = allProcesses.findIndex(
-    (p: any) => p.id === id
-  );
+  const process = id ? getProcess(id) : undefined;
+  const name = process?.name || 'Unbekannt';
+
+  const parentProcess = id ? getParentProcess(id) : undefined;
+  const coreProcesses = id ? getChildProcesses(id, 'core') : [];
+  const managementProcesses = id ? getChildProcesses(id, 'management') : [];
+  const supportProcesses = id ? getChildProcesses(id, 'support') : [];
 
   return (
     <div>
       <Stack>
         <NavBar
-          title={"Übersicht: " + allProcesses[parentProcessIndex].name}
+          title={"Prozess: " + name}
         />
         <ProcessLandscape
-          parentProcess={allProcesses[parentProcessIndex]}
-          coreProcesses={allProcesses.filter(
-            p => p.parent === id && p.type === "core"
-          )}
-          managementProcesses={allProcesses.filter(
-            p => p.parent === id && p.type === "management"
-          )}
-          supportProcesses={allProcesses.filter(p => p.parent === id && p.type === "support")}
+          parentProcess={parentProcess}
+          coreProcesses={coreProcesses}
+          managementProcesses={managementProcesses}
+          supportProcesses={supportProcesses}
         />
       </Stack>
     </div>

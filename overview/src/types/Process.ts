@@ -1,4 +1,4 @@
-type ProcessId = string;
+export type ProcessId = string;
 
 export type Process = {
   id: ProcessId;
