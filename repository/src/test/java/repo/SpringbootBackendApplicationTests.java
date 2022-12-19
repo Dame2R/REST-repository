@@ -38,31 +38,30 @@ public class SpringbootBackendApplicationTests {
 	public void testgetOverviewById() throws Exception {
         //Expected Output
         /*    
-    "id": "Process_0vjv4zs",
-    "childProcess": "Process_1kndcr1;Process_1kndcr1;",
-    "startKnoten": "StartEvent_1;Event_1po129z;",
-    "endKnoten": "Event_0jwg8pn;Event_1yedj2w;",
-    "energySumYear": 50,
-    "processType": "nicht core",
-    "department": "Verkauf",
-    "processDescription": "Dies ist eine Prozessbeschreibung\nad"
+        "id": "Process_0vjv4zt",
+        "childProcess": "Process_1kndcr1;",
+        "startKnoten": "StartEvent_1;Event_1po129z;",
+        "endKnoten": "Event_1a8blh9;",
+        "energySumYear": 450,
+        "processType": "CORE",
+        "department": "Einkauf",
+        "processDescription": "Dies ist eine Prozessbeschreibung\n        "
 } */
-	mockMvc.perform(get("/overview/Process_0vjv4zs")).andExpect(status().isOk())
+	mockMvc.perform(get("/overview/Process_0vjv4zt")).andExpect(status().isOk())
 				.andExpect(content().contentType("application/json;"))
-                .andExpect(jsonPath("$.id").value("Process_0vjv4zs"))
-                .andExpect(jsonPath("$.childProcess").value("Process_1kndcr1;Process_1kndcr1;"))
+                .andExpect(jsonPath("$.id").value("Process_0vjv4zt"))
+                .andExpect(jsonPath("$.childProcess").value("Process_1kndcr1;"))
                 .andExpect(jsonPath("$.startKnoten").value("StartEvent_1;Event_1po129z;"))
-                .andExpect(jsonPath("$.endKnoten").value("Event_0jwg8pn;Event_1yedj2w;"))
-                .andExpect(jsonPath("$.energySumYear").value(50))
-                .andExpect(jsonPath("$.processType").value("nicht core"))
-                .andExpect(jsonPath("$.department").value("Verkauf"))
-                .andExpect(jsonPath("$.processDescription").value("Dies ist eine Prozessbeschreibung\nad"));
+                .andExpect(jsonPath("$.endKnoten").value("Event_1a8blh9;"))
+                .andExpect(jsonPath("$.energySumYear").value(450))
+                .andExpect(jsonPath("$.processType").value("CORE"))
+                .andExpect(jsonPath("$.department").value("Einkauf"));
 				
 	}
     @Test
 	public void testgetModelById() throws Exception {
 
-	mockMvc.perform(get("/modell/Process_0vjv4zs")).andExpect(status().isOk())
+	mockMvc.perform(get("/modell/Process_0vjv4zt")).andExpect(status().isOk())
 				.andExpect(content().contentType("text/plain;charset=UTF-8;"));
 				
 	}
