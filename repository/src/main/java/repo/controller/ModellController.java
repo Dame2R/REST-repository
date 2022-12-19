@@ -56,10 +56,11 @@ public class ModellController {
 			Document document = builder.parse(is);
 			document.getDocumentElement().normalize();
 
+			//Prüfen ob ID bereits genutzt wurde
 			List<OverviewDto> overviewList = getAllOverviews();
 			for (int i = 0; i < overviewList.size(); i++) {
 				if(overviewList.get(i).getId().equalsIgnoreCase(document.getElementsByTagName("bpmn:process").item(0).getAttributes().item(1).getNodeValue())){
-				throw new IdAlreadyUsedException("Id already used with: ", i);
+				throw new IdAlreadyUsedException("Id already used with: ", i, null);
 				}
 			}
 			//DOM-Parser sortiert intern nach alphabet

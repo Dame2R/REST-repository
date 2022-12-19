@@ -11,12 +11,14 @@ public class IdAlreadyUsedException extends RuntimeException{
 	private static final long serialVersionUID = 1L;
 	private String resourceName;
 	private int ID;
+	private Object fieldValue;
 
 	
-	public IdAlreadyUsedException(String resourceName, int ID) {
-		super(String.format("%s ID already used with %s ", resourceName, ID));
+	public IdAlreadyUsedException(String resourceName, int ID, Object fieldValue) {
+		super(String.format("%s ID already used with %s: %s ", resourceName, ID, fieldValue));
 		this.resourceName = resourceName;
 		this.ID = ID;
+		this.fieldValue = fieldValue;
 		
 	}
 	
