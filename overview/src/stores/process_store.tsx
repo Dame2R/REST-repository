@@ -12,7 +12,7 @@ type ProcessStoreState = {
   fetchProcesses: () => void;
   getProcess: (id: ProcessId) => Process | undefined;
   getParentProcess: (id: ProcessId) => Process | undefined;
-  getChildProcesses: (id: ProcessId, type: Process['type']) => Process[];
+  getChildProcesses: (id: ProcessId, type: Process["type"]) => Process[];
 };
 
 export const useProcessStore = create<ProcessStoreState>((set, get) => ({
@@ -22,36 +22,47 @@ export const useProcessStore = create<ProcessStoreState>((set, get) => ({
   managementProcesses: [],
   supportProcesses: [],
   fetchProcesses: async () => {
-    const processes = axios.get<Process[]>("/overviews")
+    const processes = axios
+      .get<Process[]>("/overviews")
       .then((response) => {
+        console.log(response.data);
         return response.data;
       })
       .catch((reason) => {
-        console.log('Failed to get processes', reason)
+        console.log("Failed to get processes", reason);
         return mockProcesses as Process[];
       })
       .then((processes) => {
         return processes.sort((a: any, b: any) =>
           a.energySumYear < b.energySumYear ? 1 : -1
         );
-      })
-
+      });
 
     set({ allProcesses: await processes });
-    set({ topLevelProcesses: (await processes).filter(p => p.parent === undefined) });
-    set({ coreProcesses: (await processes).filter(p => p.type === 'core') });
-    set({ managementProcesses: (await processes).filter(p => p.type === 'management') });
-    set({ supportProcesses: (await processes).filter(p => p.type === 'support') });
+    set({
+      topLevelProcesses: (await processes).filter(
+        (p) => p.parent === undefined
+      ),
+    });
+    set({ coreProcesses: (await processes).filter((p) => p.type === "core") });
+    set({
+      managementProcesses: (await processes).filter(
+        (p) => p.type === "management"
+      ),
+    });
+    set({
+      supportProcesses: (await processes).filter((p) => p.type === "support"),
+    });
   },
   getProcess: (id: ProcessId): Process | undefined => {
-    return get().allProcesses.find(p => p.id === id);
+    return get().allProcesses.find((p) => p.id === id);
   },
   getParentProcess: (id: ProcessId): Process | undefined => {
     const process = get().getProcess(id);
     return process?.parent ? get().getProcess(process.parent) : undefined;
   },
-  getChildProcesses: (id: ProcessId, type: Process['type']): Process[] => {
+  getChildProcesses: (id: ProcessId, type: Process["type"]): Process[] => {
     const allProcesses = get().allProcesses;
-    return allProcesses.filter(p =>  p.parent === id && p.type === type)
+    return allProcesses.filter((p) => p.parent === id && p.type === type);
   },
 }));
