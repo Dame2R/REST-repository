@@ -10,13 +10,15 @@ import java.util.List;
 import javax.sql.*;
 
 import io.swagger.models.Xml;
+import javassist.tools.web.BadHttpRequest;
+
 import org.apache.maven.model.Model;
 import org.cyberneko.html.parsers.DOMParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.web.client.HttpClientErrorException.BadRequest;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -124,8 +126,12 @@ public class ModellController {
 			modellService.saveModell(modell);
 
 
-		}catch(Exception e){
+		}catch(IdAlreadyUsedException e){
+			return HttpStatus.CONFLICT.toString();
+		}
+		catch(Exception e){
 			HttpStatus.BAD_REQUEST.toString();
+			
 		}
 		return HttpStatus.CREATED.toString();
 	}
