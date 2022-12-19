@@ -38,6 +38,7 @@ export const MuiSnackbar = (props: SnackbarProps) => {
         }}>
             <Alert onClose={handleClose} severity="info" sx={{
                 width: '100%' }}>
+                {props.text}
             </Alert>
             </Snackbar>
 
