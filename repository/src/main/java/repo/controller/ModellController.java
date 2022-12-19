@@ -24,6 +24,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import repo.dtos.ModellDto;
 import repo.dtos.OverviewDto;
+import repo.exception.IdAlreadyUsedException;
 import repo.exception.ResourceNotFoundException;
 import repo.model.Modell;
 import repo.service.ModellService;
@@ -55,7 +56,12 @@ public class ModellController {
 			Document document = builder.parse(is);
 			document.getDocumentElement().normalize();
 
-
+			List<OverviewDto> overviewList = getAllOverviews();
+			for (int i = 0; i < overviewList.size(); i++) {
+				if(overviewList.get(i).getId().equalsIgnoreCase(document.getElementsByTagName("bpmn:process").item(0).getAttributes().item(1).getNodeValue())){
+				throw new IdAlreadyUsedException("Id already used with: ", i);
+				}
+			}
 			//DOM-Parser sortiert intern nach alphabet
 
 			modell.setDepartment(document.getElementsByTagName("bpmn:process").item(0).getAttributes().item(0).getNodeValue());
