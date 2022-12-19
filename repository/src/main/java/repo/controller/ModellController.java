@@ -130,7 +130,7 @@ public class ModellController {
 			return HttpStatus.CONFLICT.toString();
 		}
 		catch(Exception e){
-			HttpStatus.BAD_REQUEST.toString();
+			return HttpStatus.BAD_REQUEST.toString();
 			
 		}
 		return HttpStatus.CREATED.toString();
