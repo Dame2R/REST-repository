@@ -3,6 +3,7 @@ import NavBar from "../components/Navbar";
 import { useProcessStore } from "../stores/process_store";
 import ProcessLandscape from "../components/ProcessLandscape";
 import { useParams } from "react-router-dom";
+import { MuiSnackbar } from "../components/MuiSnackbar";
 
 export default function ProcessDetails() {
   const { id } = useParams();
@@ -19,7 +20,10 @@ export default function ProcessDetails() {
   const managementProcesses = id ? getChildProcesses(id, 'management') : [];
   const supportProcesses = id ? getChildProcesses(id, 'support') : [];
 
+  const hasChildProcess = coreProcesses.length > 0 || managementProcesses.length > 0 || supportProcesses.length > 0;
+
   return (
+
     <div>
       <Stack>
         <NavBar
@@ -32,6 +36,7 @@ export default function ProcessDetails() {
           supportProcesses={supportProcesses}
         />
       </Stack>
+      <MuiSnackbar open={!hasChildProcess} text='Dieser Prozess hat keine weiteren Teilprozesse!' />
     </div>
   );
 }
