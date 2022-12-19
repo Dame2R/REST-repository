@@ -3,10 +3,11 @@ export type ProcessId = string;
 export type Process = {
   id: ProcessId;
   name: string;
-  type: 'management' | 'core' | 'support';
-  description: string;
+  processType: 'management' | 'core' | 'support';
+  processDescription: string;
+  department: string;
   energySumYear: number;
-  parent?: ProcessId;
-  predecessors?: [ProcessId];
-  successors?: [ProcessId];
+  childProcess?: ProcessId;
+  startKnoten?: [ProcessId];
+  endKnoten?: [ProcessId];
 } 
