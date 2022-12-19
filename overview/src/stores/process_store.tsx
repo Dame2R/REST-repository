@@ -12,7 +12,7 @@ type ProcessStoreState = {
   fetchProcesses: () => void;
   getProcess: (id: ProcessId) => Process | undefined;
   getParentProcess: (id: ProcessId) => Process | undefined;
-  getChildProcesses: (id: ProcessId, type: Process["type"]) => Process[];
+  getChildProcesses: (id: ProcessId, type: Process["processType"]) => Process[];
 };
 
 export const useProcessStore = create<ProcessStoreState>((set, get) => ({
@@ -41,17 +41,17 @@ export const useProcessStore = create<ProcessStoreState>((set, get) => ({
     set({ allProcesses: await processes });
     set({
       topLevelProcesses: (await processes).filter(
-        (p) => p.parent === undefined
+        (p) => p.childProcess === undefined
       ),
     });
-    set({ coreProcesses: (await processes).filter((p) => p.type === "core") });
+    set({ coreProcesses: (await processes).filter((p) => p.processType === "core") });
     set({
       managementProcesses: (await processes).filter(
-        (p) => p.type === "management"
+        (p) => p.processType === "management"
       ),
     });
     set({
-      supportProcesses: (await processes).filter((p) => p.type === "support"),
+      supportProcesses: (await processes).filter((p) => p.processType === "support"),
     });
   },
   getProcess: (id: ProcessId): Process | undefined => {
@@ -59,10 +59,10 @@ export const useProcessStore = create<ProcessStoreState>((set, get) => ({
   },
   getParentProcess: (id: ProcessId): Process | undefined => {
     const process = get().getProcess(id);
-    return process?.parent ? get().getProcess(process.parent) : undefined;
+    return process?.childProcess ? get().getProcess(process.childProcess) : undefined;
   },
-  getChildProcesses: (id: ProcessId, type: Process["type"]): Process[] => {
+  getChildProcesses: (id: ProcessId, type: Process["processType"]): Process[] => {
     const allProcesses = get().allProcesses;
-    return allProcesses.filter((p) => p.parent === id && p.type === type);
+    return allProcesses.filter((p) => p.childProcess === id && p.processType === type);
   },
 }));
