@@ -75,17 +75,18 @@ public class ModellController {
 			String startEventString = "";
 			for(int i=0; i<startEvent.getLength(); i++){
 				Node startEventNodeName = startEvent.item(i);
-				startEventString += startEventNodeName.getAttributes().item(0).getNodeValue() + ";";
+				if(startEventNodeName.getAttributes().item(1).getNodeValue() != "")
+				startEventString += startEventNodeName.getAttributes().item(1).getNodeValue() + ";";
 			}
 			modell.setStartKnoten(startEventString);
 
 			//Wenn kein endEvent in der XML gefunden wurde, soll das Feld in der DB null bleiben
-			if(document.getElementsByTagName("bpmn:endEvent").getLength() != 0){
-				NodeList endEvent = document.getElementsByTagName("bpmn:endEvent");
+			if(document.getElementsByTagName("bpmn:message").getLength() != 0){
+				NodeList endEvent = document.getElementsByTagName("bpmn:message");
 				String endEventStrings = "";
 				for(int i=0; i<endEvent.getLength(); i++){
 					Node item1 = endEvent.item(i);
-					endEventStrings += item1.getAttributes().item(0).getNodeValue() + ";";
+					endEventStrings += item1.getAttributes().item(1).getNodeValue() + ";";
 				}
 				modell.setEndKnoten(endEventStrings);
 			}
@@ -93,8 +94,8 @@ public class ModellController {
 			modell.setXml(new SerialBlob(xml.getBytes()));
 
 			//Child Prozesse speichern wenn vorhanden
-			if(document.getElementsByTagName("zeebe:calledElement").getLength() != 0){
-				NodeList callActivity = document.getElementsByTagName("zeebe:calledElement");
+			if(document.getElementsByTagName("bpmn:callActivity").getLength() != 0){
+				NodeList callActivity = document.getElementsByTagName("bpmn:callActivity");
 				String callActivityString = "";
 				for(int i=0; i<callActivity.getLength(); i++){
 					Node item1 = callActivity.item(i);
@@ -104,8 +105,8 @@ public class ModellController {
 			}
 			//CO2 summieren
 			int co2 = 0;
-			if(document.getElementsByTagName("zeebe:property").getLength() != 0){
-				NodeList task = document.getElementsByTagName("zeebe:property");
+			if(document.getElementsByTagName("camunda:property").getLength() != 0){
+				NodeList task = document.getElementsByTagName("camunda:property");
 				for(int i=0; i<task.getLength(); i++) {
 					//Es dürfen keine leeren Properties vorkommen.
 					if (task.item(i).getAttributes().item(0).getNodeValue().equals("CO2")) {
